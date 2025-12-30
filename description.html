@@ -3,86 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Despre | Ilinca</title>
+    <title>Poveste | Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --glass: rgba(255, 255, 255, 0.4);
-            --border: rgba(255, 255, 255, 0.25);
-            --dark: #1d1d1f;
-        }
-
+        :root { --glass: rgba(255, 255, 255, 0.45); --border: rgba(255, 255, 255, 0.3); --dark: #1d1d1f; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         body { 
             font-family: 'Montserrat', sans-serif; 
             background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
-            min-height: 100vh;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            padding: 20px;
+            min-height: 100vh; display: flex; align-items: center; padding: 20px;
         }
 
-        /* --- NAVBAR VERTICAL BOTTOM-RIGHT --- */
         nav {
-            position: fixed;
-            bottom: 30px;
-            right: 20px;
-            width: 60px;
-            background: var(--glass);
-            backdrop-filter: blur(25px) saturate(180%);
+            position: fixed; bottom: 20px; right: 15px; width: 55px;
+            background: var(--glass); backdrop-filter: blur(25px) saturate(180%);
             -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 30px;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            padding: 20px 0;
-            gap: 25px;
-            z-index: 1000;
+            border-radius: 28px; border: 1px solid var(--border);
+            display: flex; flex-direction: column; padding: 15px 0; gap: 22px; z-index: 2000;
         }
+        .nav-item { text-decoration: none; color: rgba(0,0,0,0.5); font-size: 1.2rem; display: flex; justify-content: center; transition: 0.4s; }
+        .nav-item:nth-child(2), .nav-item:hover { transform: translateX(-6px); color: #000; }
 
-        .nav-item {
-            text-decoration: none;
-            color: #555;
-            font-size: 1.3rem;
-            display: flex;
-            justify-content: center;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .container { 
+            width: 100%; max-width: 500px; 
+            padding-right: 75px; /* Spațiu de siguranță pentru navigație */
+            animation: fadeIn 0.8s ease; 
         }
-
-        /* Pagina Despre activa (elementul 2) plutește la stânga */
-        .nav-item:nth-child(2), .nav-item:hover { 
-            transform: translateX(-10px); 
-            color: #000; 
-        }
-
-        /* --- CONTENT --- */
-        .container {
-            width: 100%;
-            max-width: 500px;
-            margin-right: 70px; /* Lasă loc pentru navbar */
-            animation: fadeIn 0.8s ease;
-        }
-
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 35px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-        }
-
+        .glass-card { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 35px; padding: 30px; }
         h1 { font-weight: 300; letter-spacing: 2px; margin-bottom: 20px; font-size: 1.6rem; }
-        p { font-size: 0.9rem; line-height: 1.7; opacity: 0.8; margin-bottom: 15px; }
-
+        p { font-size: 0.9rem; line-height: 1.7; opacity: 0.8; }
         @keyframes fadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -90,14 +44,11 @@
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
-
     <div class="container">
         <div class="glass-card">
             <h1>Poveste</h1>
-            <p>Un refugiu minimalist conceput pentru grupuri care caută liniștea absolută.</p>
-            <p>Casa Ilinca îmbină estetica modernă cu spiritul montan, oferind o experiență de cazare integrală la poalele Ceahlăului.</p>
+            <p>Un refugiu minimalist conceput pentru grupuri care caută liniștea absolută la poalele Ceahlăului.</p>
         </div>
     </div>
-
 </body>
 </html>
