@@ -18,15 +18,17 @@
         .nav-item { text-decoration: none; color: var(--dark); font-size: 1.3rem; display: flex; justify-content: center; transition: 0.3s; }
 
         /* Card Contact */
-        .glass-card { background: rgba(255,255,255,0.4); backdrop-filter: blur(25px); border: 1px solid var(--border); border-radius: 40px; padding: 40px 30px; text-align: center; max-width: 400px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        h1 { font-weight: 300; margin-bottom: 25px; letter-spacing: 2px; }
-        .contact-link { display: flex; align-items: center; justify-content: center; gap: 12px; background: white; padding: 15px; border-radius: 20px; text-decoration: none; color: black; font-weight: 600; margin-bottom: 25px; border: 1px solid var(--border); transition: 0.3s; }
-        .contact-link:active { transform: scale(0.98); }
+        .glass-card { background: rgba(255,255,255,0.4); backdrop-filter: blur(25px); border: 1px solid var(--border); border-radius: 50px; padding: 50px 30px; text-align: center; max-width: 400px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        h1 { font-weight: 300; margin-bottom: 30px; letter-spacing: 1px; font-size: 2rem; color: #333; }
+        
+        /* Chenarul cu Mail */
+        .contact-link { display: flex; align-items: center; justify-content: center; gap: 10px; background: white; padding: 16px 25px; border-radius: 50px; text-decoration: none; color: black; font-weight: 500; margin-bottom: 35px; border: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem; transition: 0.3s; }
+        .contact-link i { font-size: 1rem; }
 
         /* Social Icons */
-        .social-dots { display: flex; justify-content: center; gap: 25px; }
+        .social-dots { display: flex; justify-content: center; gap: 30px; }
         .social-dots a { color: black; font-size: 1.6rem; transition: 0.3s; text-decoration: none; }
-        .social-dots a:hover { opacity: 0.6; transform: translateY(-3px); }
+        .social-dots a:active { transform: scale(0.9); opacity: 0.6; }
     </style>
 </head>
 <body>
@@ -41,15 +43,19 @@
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
 
-    <div class="social-dots">
-    <a href="https://www.facebook.com/PROFILUL_TAU" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/PROFILUL_TAU" target="_blank"><i class="fab fa-instagram"></i></a>
-    
-    <a href="https://wa.me/40735722314" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-</div>
+    <div class="glass-card">
+        <h1>Contact</h1>
+        
+        <a href="mailto:casailinca@gmail.com" class="contact-link">
+            <i class="fas fa-envelope"></i> casailinca@gmail.com
+        </a>
 
+        <div class="social-dots">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/40735722314" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
 
     <script>
         function toggleMenu() {
