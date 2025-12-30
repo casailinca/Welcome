@@ -7,23 +7,91 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --glass: rgba(255, 255, 255, 0.4); --border: rgba(255, 255, 255, 0.2); --dark: #1d1d1f; }
+        :root { 
+            --glass: rgba(255, 255, 255, 0.4); 
+            --border: rgba(255, 255, 255, 0.25); 
+            --dark: #1d1d1f; 
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); min-height: 100vh; color: var(--dark); }
-        nav { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 500px; height: 65px; background: var(--glass); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-radius: 20px; border: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
-        .nav-item { text-decoration: none; color: #555; display: flex; flex-direction: column; align-items: center; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); 
+            min-height: 100vh; 
+            color: var(--dark); 
+        }
+
+        /* --- NAVBAR SUS (LIQUID GLASS) --- */
+        nav { 
+            position: fixed; top: 15px; left: 50%; transform: translateX(-50%); 
+            width: 90%; max-width: 500px; height: 65px; 
+            background: var(--glass); 
+            backdrop-filter: blur(25px) saturate(180%); 
+            -webkit-backdrop-filter: blur(25px) saturate(180%); 
+            border-radius: 20px; 
+            border: 1px solid var(--border); 
+            display: flex; justify-content: space-around; align-items: center; 
+            z-index: 1000; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .nav-item { 
+            text-decoration: none; color: #555; 
+            display: flex; flex-direction: column; 
+            align-items: center; 
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+        
         .nav-item i { font-size: 1.1rem; }
         .nav-item span { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; margin-top: 2px; opacity: 0; transition: 0.4s; }
-        /* Animația Floating în JOS pentru Spații */
+
+        /* Animația Floating în JOS pentru butonul 3 (Spații) */
         .nav-item:nth-child(3) i, .nav-item:hover i { transform: translateY(8px); color: #000; }
         .nav-item:nth-child(3) span, .nav-item:hover span { opacity: 1; transform: translateY(8px); color: #000; }
-        .container { padding: 110px 20px 40px; max-width: 900px; margin: auto; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .glass-img { background: var(--glass); backdrop-filter: blur(10px); border-radius: 25px; border: 1px solid var(--border); overflow: hidden; height: 200px; }
-        .glass-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+
+        /* --- CONTENT --- */
+        .container { padding: 110px 20px 40px; max-width: 1000px; margin: auto; }
+        
+        h1 { font-weight: 300; letter-spacing: 2px; margin-bottom: 30px; text-align: center; font-size: 1.5rem; }
+
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            transition: 0.3s;
+        }
+
+        .img-wrapper { 
+            border-radius: 20px; 
+            overflow: hidden; 
+            height: 220px; 
+            margin-bottom: 15px;
+        }
+
+        .img-wrapper img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            transition: 0.5s ease;
+        }
+
+        .glass-card:hover img { transform: scale(1.05); }
+
+        .label { font-size: 0.75rem; font-weight: 600; text-align: center; opacity: 0.7; letter-spacing: 1px; }
     </style>
 </head>
 <body>
+
     <nav>
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i><span>Despre</span></a>
@@ -31,12 +99,24 @@
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i><span>Locație</span></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i><span>Contact</span></a>
     </nav>
+
     <div class="container">
+        <h1>Spații de Relaxare</h1>
         <div class="gallery-grid">
-            <div class="glass-img"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600" alt="Spațiu"></div>
-            <div class="glass-img"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600" alt="Spațiu"></div>
-            <div class="glass-img"><img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=600" alt="Spațiu"></div>
+            <div class="glass-card">
+                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600"></div>
+                <div class="label">EXTERIOR & GRADINĂ</div>
+            </div>
+            <div class="glass-card">
+                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600"></div>
+                <div class="label">LIVING ROOM</div>
+            </div>
+            <div class="glass-card">
+                <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=600"></div>
+                <div class="label">DORMITOARE</div>
+            </div>
         </div>
     </div>
+
 </body>
 </html>
