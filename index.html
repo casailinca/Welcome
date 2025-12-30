@@ -7,91 +7,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --glass: rgba(255, 255, 255, 0.7);
-            --border: rgba(255, 255, 255, 0.4);
-            --dark: #1d1d1f;
-        }
-
+        :root { --glass: rgba(255, 255, 255, 0.7); --border: rgba(255, 255, 255, 0.4); --dark: #1d1d1f; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: var(--glass); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); cursor: pointer; z-index: 3000; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(25px) saturate(180%); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
+        .nav-item { text-decoration: none; color: var(--dark); font-size: 1.3rem; display: flex; justify-content: center; transition: 0.3s; }
+        .nav-item:hover { color: #555; transform: scale(1.1); }
 
-        /* --- BUTON HAMBURGER (DREAPTA JOS) --- */
-        .menu-toggle {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 55px;
-            height: 55px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            z-index: 3000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        /* --- MENIUL CARE SE DESCHIDE --- */
-        nav {
-            position: fixed;
-            bottom: 90px; /* Apare deasupra butonului */
-            right: 25px;
-            background: var(--glass);
-            backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 25px;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            gap: 20px;
-            z-index: 2000;
-            transform: translateY(20px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        /* Clasa care activează meniul */
-        nav.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .nav-item {
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 1.3rem;
-            display: flex;
-            justify-content: center;
-            transition: 0.3s;
-        }
-
-        /* --- HERO CONTENT --- */
-        .hero { text-align: center; }
+        .hero { text-align: center; animation: fadeIn 1.2s ease; }
         .logo-main { font-size: 3rem; font-weight: 200; letter-spacing: 8px; text-transform: uppercase; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
-
-    <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars" id="menu-icon"></i>
-    </div>
-
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -99,26 +31,14 @@
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
-
-    <div class="hero">
-        <h1 class="logo-main">Ilinca</h1>
-    </div>
-
+    <div class="hero"><h1 class="logo-main">Ilinca</h1></div>
     <script>
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
             const icon = document.getElementById('menu-icon');
-            
             nav.classList.toggle('active');
-            
-            // Schimbă iconița din hamburger în "X" când e deschis
-            if (nav.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         }
     </script>
 </body>
