@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --glass: rgba(255, 255, 255, 0.4);
-            --border: rgba(255, 255, 255, 0.25);
+            --glass: rgba(255, 255, 255, 0.45);
+            --border: rgba(255, 255, 255, 0.3);
             --dark: #1d1d1f;
         }
 
@@ -23,46 +23,52 @@
             align-items: center;
             justify-content: center;
             color: var(--dark);
-            overflow: hidden;
+            overflow: hidden; /* Previne scroll-ul pe index pentru un look curat */
         }
 
-        /* --- NAVBAR VERTICAL BOTTOM-RIGHT --- */
+        /* --- DINAMIC ISLAND VERTICAL (LIPIT DE DREAPTA-JOS) --- */
         nav {
             position: fixed;
-            bottom: 30px;
-            right: 20px;
-            width: 60px;
+            bottom: 20px; /* Coborât mai jos */
+            right: 15px;  /* Lipit mai mult de marginea dreaptă */
+            width: 55px;  /* Puțin mai îngust pentru a ocupa mai puțin spațiu */
             background: var(--glass);
             backdrop-filter: blur(25px) saturate(180%);
             -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 30px;
+            border-radius: 28px;
             border: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            padding: 20px 0;
-            gap: 25px;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            gap: 22px;
+            z-index: 2000;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
         }
 
         .nav-item {
             text-decoration: none;
-            color: #555;
-            font-size: 1.3rem;
+            color: rgba(0,0,0,0.5);
+            font-size: 1.2rem;
             display: flex;
             justify-content: center;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Animația Floating spre STÂNGA (pentru navbar vertical pe dreapta) */
+        /* Animație fină spre stânga pentru elementul activ */
         .nav-item:nth-child(1), .nav-item:hover { 
-            transform: translateX(-10px); 
+            transform: translateX(-6px); 
             color: #000; 
         }
 
-        /* --- HERO --- */
-        .hero { text-align: center; animation: fadeIn 1.2s ease; }
-        .logo-main { font-size: 3.5rem; font-weight: 200; letter-spacing: 8px; text-transform: uppercase; }
+        /* --- HERO CONTENT CU SPAȚIU DE SIGURANȚĂ --- */
+        .hero { 
+            text-align: center; 
+            animation: fadeIn 1.2s ease;
+            /* Padding-ul asigură că textul nu ajunge sub navigație */
+            padding-right: 60px; 
+        }
+
+        .logo-main { font-size: 3.2rem; font-weight: 200; letter-spacing: 8px; text-transform: uppercase; }
         .subtitle { font-size: 0.7rem; letter-spacing: 4px; opacity: 0.5; margin-top: 10px; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
