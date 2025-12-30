@@ -6,11 +6,10 @@
     <title>Despre | Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
         :root {
             --glass: rgba(255, 255, 255, 0.4);
-            --border: rgba(255, 255, 255, 0.2);
+            --border: rgba(255, 255, 255, 0.25);
             --dark: #1d1d1f;
         }
 
@@ -21,104 +20,82 @@
             background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
             min-height: 100vh;
             color: var(--dark);
-            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            padding: 20px;
         }
 
-        /* --- NAVBAR SUS (LIQUID GLASS) --- */
+        /* --- NAVBAR VERTICAL BOTTOM-RIGHT --- */
         nav {
-            position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 500px; height: 65px;
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            width: 60px;
             background: var(--glass);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 20px;
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 30px;
             border: 1px solid var(--border);
-            display: flex; justify-content: space-around; align-items: center;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            gap: 25px;
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .nav-item { text-decoration: none; color: #555; display: flex; flex-direction: column; align-items: center; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .nav-item i { font-size: 1.1rem; }
-        .nav-item span { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; margin-top: 2px; opacity: 0; transition: 0.4s; }
+        .nav-item {
+            text-decoration: none;
+            color: #555;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: center;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-        /* Animația Floating în JOS pentru pagina activă (Despre) */
-        .nav-item:nth-child(2) i, .nav-item:hover i { transform: translateY(8px); color: #000; }
-        .nav-item:nth-child(2) span, .nav-item:hover span { opacity: 1; transform: translateY(8px); color: #000; }
+        /* Pagina Despre activa (elementul 2) plutește la stânga */
+        .nav-item:nth-child(2), .nav-item:hover { 
+            transform: translateX(-10px); 
+            color: #000; 
+        }
 
         /* --- CONTENT --- */
-        .container { 
-            padding: 110px 25px 40px; 
-            max-width: 700px; 
-            margin: auto; 
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin-right: 70px; /* Lasă loc pentru navbar */
             animation: fadeIn 0.8s ease;
         }
 
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
-            border-radius: 30px;
-            padding: 35px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            border-radius: 35px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
         }
 
-        h1 { font-weight: 300; letter-spacing: 2px; margin-bottom: 20px; text-align: center; font-size: 1.8rem; }
-        p { margin-bottom: 15px; font-size: 0.95rem; opacity: 0.8; text-align: justify; }
-        
-        .feature-tag {
-            display: inline-block;
-            padding: 5px 15px;
-            background: rgba(255,255,255,0.4);
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin: 5px;
-            border: 1px solid var(--border);
-        }
+        h1 { font-weight: 300; letter-spacing: 2px; margin-bottom: 20px; font-size: 1.6rem; }
+        p { font-size: 0.9rem; line-height: 1.7; opacity: 0.8; margin-bottom: 15px; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="nav-item">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="description.html" class="nav-item">
-            <i class="fas fa-info-circle"></i>
-            <span>Despre</span>
-        </a>
-        <a href="spaces.html" class="nav-item">
-            <i class="fas fa-bed"></i>
-            <span>Spații</span>
-        </a>
-        <a href="location.html" class="nav-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Locație</span>
-        </a>
-        <a href="contact.html" class="nav-item">
-            <i class="fas fa-paper-plane"></i>
-            <span>Contact</span>
-        </a>
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
+        <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
+        <a href="spaces.html" class="nav-item"><i class="fas fa-bed"></i></a>
+        <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
 
     <div class="container">
         <div class="glass-card">
-            <h1>Povestea Noastră</h1>
-            <p>Casa Ilinca nu este doar o unitate de cazare, ci un refugiu creat pentru momentele care contează. Situată în inima masivului Ceahlău, casa oferă o conexiune unică cu natura.</p>
-            
-            <p>Am pus accent pe <strong>intimitate</strong>. De aceea, închiriem doar integral, oferind grupului tău libertatea de a se simți cu adevărat acasă.</p>
-            
-            <div style="margin-top: 25px; text-align: center;">
-                <span class="feature-tag">8-10 Persoane</span>
-                <span class="feature-tag">Închiriere Integrală</span>
-                <span class="feature-tag">Design Minimalist</span>
-                <span class="feature-tag">Priveliște Montană</span>
-            </div>
+            <h1>Poveste</h1>
+            <p>Un refugiu minimalist conceput pentru grupuri care caută liniștea absolută.</p>
+            <p>Casa Ilinca îmbină estetica modernă cu spiritul montan, oferind o experiență de cazare integrală la poalele Ceahlăului.</p>
         </div>
     </div>
 
