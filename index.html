@@ -3,149 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Ilinca | Privat & Exclusiv</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Ilinca | Private Retreat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
             --gold: #d4af37;
-            --dark: #1a1a1a;
+            --dark: #121212;
             --white: #ffffff;
-            --gray: #f4f4f4;
-            --transition: all 0.4s ease;
+            --bg: #f8f9fa;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--dark); scroll-behavior: smooth; }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR ANIMAT --- */
         nav {
             position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between;
-            align-items: center; padding: 20px 5%; background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px); z-index: 1000; transition: var(--transition);
+            align-items: center; padding: 15px 8%; background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
-        nav a { color: var(--white); text-decoration: none; font-weight: 700; font-size: 1.2rem; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { font-size: 0.9rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
-        .nav-links a:hover { color: var(--gold); }
 
-        /* --- HERO SECTION --- */
+        .logo { 
+            font-family: 'Playfair Display', serif; font-size: 1.8rem; 
+            color: var(--dark); text-decoration: none; letter-spacing: -1px;
+        }
+        .logo span { color: var(--gold); }
+
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { 
+            text-decoration: none; color: var(--dark); font-size: 0.85rem; 
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            position: relative; padding: 5px 0;
+        }
+
+        /* Animație subtilă sub butoane */
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px;
+            background: var(--gold); transition: var(--transition); transform: translateX(-50%);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- HERO --- */
         header {
-            height: 100vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+            height: 80vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
             url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1200');
             background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: var(--white); text-align: center; padding: 0 20px;
+            display: flex; justify-content: center; align-items: center; color: white; text-align: center;
         }
-
-        .hero-content h1 { font-size: 3.5rem; margin-bottom: 10px; animation: fadeInUp 1s ease; }
-        .hero-content p { font-size: 1.2rem; color: var(--gold); animation: fadeInUp 1.5s ease; }
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 10px; }
 
         /* --- SECTIUNI --- */
-        section { padding: 100px 10%; text-align: center; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        section { padding: 80px 10%; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        h2 { font-size: 2.5rem; margin-bottom: 40px; position: relative; }
-        h2::after { content: ''; width: 50px; height: 3px; background: var(--gold); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; text-align: center; }
 
-        /* --- CARDS --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
-        .card { background: var(--gray); padding: 40px; border-radius: 15px; transition: var(--transition); }
-        .card:hover { transform: translateY(-10px); background: var(--dark); color: var(--white); }
-        .card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: white; padding: 30px; border-radius: 15px; text-align: center; transition: var(--transition); border: 1px solid #eee; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .card i { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
 
-        /* --- CONTACT & FOOTER --- */
-        .contact-box { background: var(--dark); color: var(--white); border-radius: 20px; padding: 50px; }
+        /* --- HARTA --- */
+        .map-container { width: 100%; height: 400px; border-radius: 20px; overflow: hidden; border: 5px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* --- CONTACT --- */
+        .contact-section { background: var(--dark); color: white; text-align: center; border-radius: 30px; padding: 60px 20px; }
         .cta-btn { 
-            display: inline-block; background: var(--gold); color: var(--dark); 
-            padding: 15px 40px; border-radius: 50px; text-decoration: none; 
-            font-weight: 700; margin-top: 20px; transition: var(--transition);
+            display: inline-block; background: var(--gold); color: white; padding: 18px 45px; 
+            border-radius: 50px; text-decoration: none; font-weight: 700; transition: var(--transition);
         }
-        .cta-btn:hover { background: var(--white); transform: scale(1.05); }
-
-        /* --- ANIMATII --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .cta-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplificat pentru mobil */
+            .nav-links { gap: 10px; }
+            .nav-links a { font-size: 0.7rem; }
+            .hero-text h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#">CASA ILINCA</a>
+        <a href="#" class="logo">I<span>linca</span></a>
         <div class="nav-links">
-            <a href="#despre">Despre</a>
-            <a href="#facilitati">Facilități</a>
+            <a href="#descriere">Descriere</a>
+            <a href="#spatii">Spații</a>
+            <a href="#locatie">Locație</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <header>
-        <div class="hero-content">
+        <div class="hero-text">
             <h1>Casa Ilinca</h1>
-            <p>Eleganță și intimitate în inima muntelui</p>
-            <a href="#despre" class="cta-btn">Explorează</a>
+            <p>O experiență montană exclusivistă</p>
         </div>
     </header>
 
-    <section id="despre" class="reveal">
-        <h2>Închiriere Integrală</h2>
-        <p>Strada Izvorul muntelui nr 48A, Izvoru Muntelui</p>
+    <section id="descriere" class="reveal">
+        <h2>Descriere</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; line-height: 1.8;">
+            Situată într-un cadru natural de poveste, Casa Ilinca oferă intimitate totală pentru grupul tău. 
+            Proprietatea se închiriază doar integral, fiind refugiul perfect pentru 8-10 persoane.
+        </p>
+    </section>
+
+    <section id="spatii" style="background: #fff;" class="reveal">
+        <h2>Camere și Spații</h2>
         <div class="grid">
             <div class="card">
-                <i class="fas fa-users"></i>
-                <h3>Capacitate</h3>
-                <p>Spațiu generos pentru 8 - 10 persoane. Ideal pentru grupuri și familii.</p>
+                <i class="fas fa-bed"></i>
+                <h3>Dormitoare</h3>
+                <p>Configurație flexibilă pentru un somn odihnitor.</p>
             </div>
             <div class="card">
-                <i class="fas fa-home"></i>
-                <h3>Exclusivitate</h3>
-                <p>Casa se închiriază doar integral. Întreaga proprietate va fi doar a voastră.</p>
+                <i class="fas fa-couch"></i>
+                <h3>Living</h3>
+                <p>Zonă comună spațioasă pentru momente de neuitat.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-utensils"></i>
+                <h3>Bucătărie</h3>
+                <p>Complet echipată pentru orice preparat culinar.</p>
             </div>
         </div>
     </section>
 
-    <section id="facilitati" style="background: var(--gray);" class="reveal">
-        <h2>Facilități Premium</h2>
-        <div class="grid">
-            <div class="card"><i class="fas fa-wifi"></i><h3>Wi-Fi Rapid</h3></div>
-            <div class="card"><i class="fas fa-parking"></i><h3>Parcare Gratuită</h3></div>
-            <div class="card"><i class="fas fa-coffee"></i><h3>Bucătărie Utilată</h3></div>
-            <div class="card"><i class="fas fa-mountain"></i><h3>Vedere la Munte</h3></div>
+    <section id="locatie" class="reveal">
+        <h2>Locație</h2>
+        <p style="text-align: center; margin-bottom: 20px;">Strada Izvorul muntelui nr 48A, Izvoru Muntelui</p>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2713.435728796859!2d25.96101917688469!3d46.940253434255145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4735072074f9d14f%3A0x8684241071234567!2sStrada%20Izvorul%20Muntelui%2048A%2C%20Izvoru%20Muntelui%20615100!5e0!3m2!1sro!2sro!4v1715600000000!5m2!1sro!2sro" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
         </div>
     </section>
 
     <section id="contact" class="reveal">
-        <div class="contact-box">
-            <h2>Rezervă-ți Sejurul</h2>
-            <p>Suntem gata să vă oferim o experiență de neuitat la Casa Ilinca.</p>
-            <p><i class="fas fa-envelope"></i> casailinca@gmail.com</p>
-            <a href="mailto:casailinca@gmail.com" class="cta-btn">Trimite un Email</a>
+        <div class="contact-section">
+            <h2>Ești gata de vacanță?</h2>
+            <p style="margin-bottom: 30px;">Verifică disponibilitatea și rezervă întreaga casă.</p>
+            <a href="mailto:casailinca@gmail.com" class="cta-btn">Rezervă acum</a>
         </div>
     </section>
 
     <script>
-        // Animație de tip Reveal la Scroll
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
+        reveal(); // Rulează o dată la început
     </script>
 
 </body>
