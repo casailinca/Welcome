@@ -7,48 +7,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --glass: rgba(255, 255, 255, 0.45); --border: rgba(255, 255, 255, 0.3); --dark: #1d1d1f; }
+        :root { --glass: rgba(255, 255, 255, 0.7); --border: rgba(255, 255, 255, 0.4); --dark: #1d1d1f; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
-            min-height: 100vh; display: flex; align-items: center; padding: 20px;
-        }
+        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        
+        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: var(--glass); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); cursor: pointer; z-index: 3000; }
+        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(25px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
+        nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
+        .nav-item { text-decoration: none; color: var(--dark); font-size: 1.3rem; display: flex; justify-content: center; }
 
-        nav {
-            position: fixed; bottom: 20px; right: 15px; width: 55px;
-            background: var(--glass); backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 28px; border: 1px solid var(--border);
-            display: flex; flex-direction: column; padding: 15px 0; gap: 22px; z-index: 2000;
-        }
-        .nav-item { text-decoration: none; color: rgba(0,0,0,0.5); font-size: 1.2rem; display: flex; justify-content: center; transition: 0.4s; }
-        .nav-item:nth-child(2), .nav-item:hover { transform: translateX(-6px); color: #000; }
-
-        .container { 
-            width: 100%; max-width: 500px; 
-            padding-right: 75px; /* Spațiu de siguranță pentru navigație */
-            animation: fadeIn 0.8s ease; 
-        }
-        .glass-card { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 35px; padding: 30px; }
-        h1 { font-weight: 300; letter-spacing: 2px; margin-bottom: 20px; font-size: 1.6rem; }
-        p { font-size: 0.9rem; line-height: 1.7; opacity: 0.8; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+        .glass-card { background: rgba(255,255,255,0.4); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 35px; padding: 30px; max-width: 500px; animation: fadeIn 0.8s ease; }
+        h1 { font-weight: 300; margin-bottom: 15px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <nav>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
+    <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
         <a href="spaces.html" class="nav-item"><i class="fas fa-bed"></i></a>
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
-    <div class="container">
-        <div class="glass-card">
-            <h1>Poveste</h1>
-            <p>Un refugiu minimalist conceput pentru grupuri care caută liniștea absolută la poalele Ceahlăului.</p>
-        </div>
+    <div class="glass-card">
+        <h1>Poveste</h1>
+        <p>Un refugiu minimalist conceput pentru grupuri care caută liniștea absolută la poalele Ceahlăului.</p>
     </div>
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            const icon = document.getElementById('menu-icon');
+            nav.classList.toggle('active');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+    </script>
 </body>
 </html>
