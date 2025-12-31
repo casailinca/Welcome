@@ -17,23 +17,24 @@
             animation: fadeInPage 0.8s ease-out;
         }
 
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInPage { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .back-btn { text-decoration: none; color: var(--dark); display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-weight: 400; }
 
-        /* Grila poze */
+        /* Grila Media */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; padding-bottom: 50px; }
-        .img-card { background: var(--glass); border-radius: 25px; padding: 8px; border: 1px solid var(--border); cursor: pointer; transition: transform 0.2s; }
-        .img-card:active { transform: scale(0.96); }
-        .img-box { aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .media-card { background: var(--glass); border-radius: 25px; padding: 8px; border: 1px solid var(--border); cursor: pointer; position: relative; transition: transform 0.2s; }
+        .media-card:active { transform: scale(0.96); }
+        .media-box { aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; background: #000; }
+        .media-box img, .media-box video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Lightbox - Fără text sub poză */
+        /* Iconiță Play pentru Video */
+        .video-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 2.5rem; opacity: 0.8; text-shadow: 0 0 10px rgba(0,0,0,0.5); pointer-events: none; }
+
+        /* Lightbox */
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 4000; padding: 20px; }
-        #lightbox img { max-width: 100%; max-height: 90vh; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        #lightbox-content { max-width: 100%; max-height: 90vh; display: flex; align-items: center; justify-content: center; }
+        #lightbox img, #lightbox video { max-width: 100%; max-height: 85vh; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
         #lightbox.active { display: flex; }
 
         /* Meniu Hamburger */
@@ -60,16 +61,29 @@
     <h1 style="font-weight: 300; margin-bottom: 25px;">Camera 1</h1>
 
     <div class="gallery-grid">
-        <div class="img-card" onclick="openLightbox(this)">
-            <div class="img-box"><img src="cam1_1.jpg"></div>
+        <div class="media-card" onclick="openLightbox(this, 'video')">
+            <div class="media-box">
+                <video src="vid1.mp4" muted playsinline></video>
+                <div class="video-badge"><i class="fas fa-play"></i></div>
+            </div>
         </div>
-        <div class="img-card" onclick="openLightbox(this)">
-            <div class="img-box"><img src="cam1_2.jpg"></div>
+
+        <div class="media-card" onclick="openLightbox(this, 'image')">
+            <div class="media-box">
+                <img src="cam1_1.jpg">
+            </div>
+        </div>
+
+        <div class="media-card" onclick="openLightbox(this, 'image')">
+            <div class="media-box">
+                <img src="cam1_2.jpg">
+            </div>
         </div>
     </div>
 
-    <div id="lightbox" onclick="this.classList.remove('active')">
-        <img src="" id="lightbox-img">
+    <div id="lightbox" onclick="closeLightbox()">
+        <div id="lightbox-content" onclick="event.stopPropagation()">
+            </div>
     </div>
 
     <script>
@@ -81,12 +95,26 @@
             icon.classList.toggle('fa-times');
         }
 
-        function openLightbox(element) {
-            const src = element.querySelector('img').src;
+        function openLightbox(element, type) {
             const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = src;
+            const content = document.getElementById('lightbox-content');
+            
+            if (type === 'video') {
+                const videoSrc = element.querySelector('video').src;
+                content.innerHTML = `<video src="${videoSrc}" controls autoplay playsinline style="width:100%;"></video>`;
+            } else {
+                const imgSrc = element.querySelector('img').src;
+                content.innerHTML = `<img src="${imgSrc}">`;
+            }
+            
             lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const content = document.getElementById('lightbox-content');
+            content.innerHTML = ''; // Oprim video-ul când închidem
+            lightbox.classList.remove('active');
         }
     </script>
 </body>
