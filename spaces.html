@@ -3,34 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spații | Ilinca</title>
+    <title>Spații | Casa Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --glass: rgba(255, 255, 255, 0.7); --border: rgba(255, 255, 255, 0.4); --dark: #1d1d1f; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); min-height: 100vh; padding: 20px; }
         
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); 
+            min-height: 100vh; 
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInPage 0.8s ease-out;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container { width: 100%; max-width: 500px; }
+
+        /* Carduri Capitol */
+        .chapter-card { 
+            position: relative; 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            margin-bottom: 25px; 
+            border-radius: 30px; 
+            overflow: hidden; 
+            border: 1px solid var(--border); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .chapter-card:active { transform: scale(0.98); }
+        .chapter-image { width: 100%; height: 100%; object-fit: cover; }
+        
+        .chapter-overlay { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: linear-gradient(transparent, rgba(0,0,0,0.8)); 
+            padding: 25px 20px; 
+            color: white; 
+        }
+
+        .chapter-overlay h2 { font-size: 1.6rem; font-weight: 600; margin-bottom: 5px; }
+        .chapter-overlay p { font-size: 0.9rem; font-weight: 300; opacity: 0.9; }
+
         /* Meniu Hamburger */
         .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: var(--glass); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); cursor: pointer; z-index: 3000; }
         nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(25px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
         .nav-item { text-decoration: none; color: var(--dark); font-size: 1.3rem; display: flex; justify-content: center; }
-
-        /* Grila Adaptată 3:4 */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; padding-bottom: 100px; }
-        .img-card { background: var(--glass); border-radius: 25px; padding: 8px; border: 1px solid var(--border); cursor: pointer; }
-        .img-box { aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Lightbox (Imaginea marita) */
-        #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 4000; padding: 20px; }
-        #lightbox img { max-width: 100%; max-height: 90vh; border-radius: 10px; box-shadow: 0 0 30px rgba(255,255,255,0.1); }
-        #lightbox.active { display: flex; }
     </style>
 </head>
 <body>
+
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
+
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -40,16 +77,26 @@
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
 
-    <h1 style="font-weight: 300; margin-bottom: 20px;">Spații</h1>
+    <div class="container">
+        <h1 style="font-weight: 300; margin: 20px 0 30px 0; text-align: left; width: 100%;">Spații</h1>
 
-    <div class="gallery-grid">
-        <div class="img-card" onclick="openLightbox(this)"><div class="img-box"><img src="IMG1.JPG"></div></div>
-        <div class="img-card" onclick="openLightbox(this)"><div class="img-box"><img src="IMG2.JPG"></div></div>
-        <div class="img-card" onclick="openLightbox(this)"><div class="img-box"><img src="IMG3.JPG"></div></div>
-    </div>
+        <a href="exterior.html" style="text-decoration: none;">
+            <div class="chapter-card">
+                <img src="ext1.jpg" class="chapter-image"> <div class="chapter-overlay">
+                    <h2>Exterior</h2>
+                    <p>Curtea, foișorul și relaxarea în aer liber</p>
+                </div>
+            </div>
+        </a>
 
-    <div id="lightbox" onclick="this.classList.remove('active')">
-        <img src="" id="lightbox-img">
+        <a href="interior_selection.html" style="text-decoration: none;">
+            <div class="chapter-card">
+                <img src="cam1_1.jpg" class="chapter-image"> <div class="chapter-overlay">
+                    <h2>Interior</h2>
+                    <p>Explorează camerele, livingul și băile</p>
+                </div>
+            </div>
+        </a>
     </div>
 
     <script>
@@ -59,14 +106,6 @@
             nav.classList.toggle('active');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
-        }
-
-        function openLightbox(element) {
-            const src = element.querySelector('img').src;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
         }
     </script>
 </body>
