@@ -11,7 +11,7 @@
             --primary: #1d1d1f;
             --bg: #f5f5f7;
             --glass: rgba(255, 255, 255, 0.8);
-            --border: rgba(0, 0, 0, 0.05);
+            --border: rgba(0, 0, 0, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,9 +23,13 @@
             color: var(--primary);
         }
 
-        .container { width: 100%; max-width: 600px; margin: 0 auto; }
+        /* Container flexibil: 95% pe mobil, max 1200px pe PC */
+        .container { 
+            width: 95%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
 
-        /* Buton Înapoi - Acum duce la spaces.html */
         .back-btn { 
             text-decoration: none; 
             color: var(--primary); 
@@ -37,26 +41,36 @@
             font-weight: 500;
         }
 
-        h1 { font-weight: 400; font-size: 2rem; margin-bottom: 25px; letter-spacing: -1px; }
+        h1 { font-weight: 400; font-size: 2rem; margin-bottom: 30px; letter-spacing: -1px; }
 
-        /* Grila de poze - Schimbată la 1 coloană pentru dimensiune maximă */
+        /* Grila inteligentă: 1 coloană pe mobil, 2 sau 3 pe PC */
         .gallery-grid { 
-            display: flex;
-            flex-direction: column; 
-            gap: 25px; /* Spațiu mai mare între pozele mari */
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
             padding-bottom: 120px;
         }
 
-        .gallery-grid img { 
-            width: 100%; 
-            /* Am scos aspect-ratio fix pentru a lăsa pozele să se vadă întregi, 
-               sau poți folosi 4/3 pentru un aspect cinematografic */
-            aspect-ratio: 4 / 3; 
-            object-fit: cover; 
-            border-radius: 30px; 
+        /* Stilul pentru link-ul pozei (pentru a permite mărirea) */
+        .gallery-item {
+            text-decoration: none;
             display: block;
+            border-radius: 30px;
+            overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img { 
+            width: 100%; 
+            aspect-ratio: 4 / 3; 
+            object-fit: cover; 
+            display: block;
         }
 
         /* Meniu Navigație Floating */
@@ -64,6 +78,12 @@
         nav { position: fixed; bottom: 100px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
         .nav-item { text-decoration: none; color: var(--primary); font-size: 1.3rem; text-align: center; }
+
+        /* Ajustări pentru ecrane mari (PC) */
+        @media (min-width: 768px) {
+            h1 { font-size: 3rem; text-align: center; margin-top: 40px; }
+            .back-btn { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
@@ -74,10 +94,10 @@
         <h1>Living & Bucătărie</h1>
 
         <div class="gallery-grid">
-            <img src="liv1.jpg" alt="Living 1">
-            <img src="liv2.jpg" alt="Living 2">
-            <img src="liv3.jpg" alt="Bucatarie">
-            <img src="liv4.jpg" alt="Hol">
+            <a href="liv1.jpg" class="gallery-item"><img src="living1.jpg" alt="Living 1"></a>
+            <a href="liv2.jpg" class="gallery-item"><img src="living2.jpg" alt="Living 2"></a>
+            <a href="liv3.jpg" class="gallery-item"><img src="living3.jpg" alt="Bucatarie"></a>
+            <a href="liv4.jpg" class="gallery-item"><img src="living4.jpg" alt="Hol"></a>
         </div>
     </div>
 
