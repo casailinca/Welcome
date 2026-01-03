@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Living & Bucătărie | Casa Ilinca</title>
+    <title>Liv & Bucătărie | Casa Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -23,12 +23,7 @@
             color: var(--primary);
         }
 
-        /* Container adaptabil pentru PC și Telefon */
-        .container { 
-            width: 95%; 
-            max-width: 1100px; 
-            margin: 0 auto; 
-        }
+        .container { width: 95%; max-width: 1200px; margin: 0 auto; }
 
         .back-btn { 
             text-decoration: none; 
@@ -43,15 +38,14 @@
 
         h1 { font-weight: 400; font-size: 2rem; margin-bottom: 30px; letter-spacing: -1px; }
 
-        /* Grila care se lățește pe PC */
+        /* Grila poze */
         .gallery-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 20px; 
             padding-bottom: 120px;
         }
 
-        /* Pozele fără margini albe */
         .gallery-grid img { 
             width: 100%; 
             aspect-ratio: 4 / 3; 
@@ -59,72 +53,76 @@
             border-radius: 25px; 
             display: block;
             cursor: zoom-in;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            border: 1px solid var(--border);
             transition: transform 0.3s ease;
+            border: 1px solid var(--border);
         }
 
         .gallery-grid img:hover { transform: scale(1.02); }
 
-        /* Stil pentru fereastra de mărire (Lightbox) */
+        /* --- LIGHTBOX CU ANIMAȚIE --- */
         .lightbox {
             display: none;
             position: fixed;
             z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
         }
 
         .lightbox img {
             max-width: 90%;
             max-height: 85%;
             border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
         }
 
         .close-lightbox {
             position: absolute;
-            top: 25px;
-            right: 35px;
+            top: 30px;
+            right: 30px;
             color: white;
-            font-size: 45px;
+            font-size: 35px;
             cursor: pointer;
-            font-family: Arial, sans-serif;
         }
 
-        /* Meniu Navigație Floating */
+        /* Meniu Floating */
         .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; }
         nav { position: fixed; bottom: 100px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
         .nav-item { text-decoration: none; color: var(--primary); font-size: 1.3rem; text-align: center; }
-
-        @media (min-width: 768px) {
-            h1 { font-size: 3rem; text-align: center; }
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <a href="spaces.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi la Spații</a>
-        
-        <h1>Living & Bucătărie</h1>
+        <h1>Liv & Bucătărie</h1>
 
         <div class="gallery-grid">
-            <img src="liv1.jpg" alt="Living 1" onclick="openLightbox(this.src)">
-            <img src="liv2.jpg" alt="Living 2" onclick="openLightbox(this.src)">
-            <img src="liv3.jpg" alt="Living 3" onclick="openLightbox(this.src)">
-            <img src="liv4.jpg" alt="Living 4" onclick="openLightbox(this.src)">
+            <img src="liv1.jpg" alt="Liv 1" onclick="openLightbox(this.src)">
+            <img src="liv2.jpg" alt="Liv 2" onclick="openLightbox(this.src)">
+            <img src="liv3.jpg" alt="Liv 3" onclick="openLightbox(this.src)">
+            <img src="liv4.jpg" alt="Liv 4" onclick="openLightbox(this.src)">
         </div>
     </div>
 
-    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-lightbox">&times;</span>
         <img id="lightbox-img" src="">
     </div>
@@ -138,18 +136,24 @@
     </nav>
 
     <script>
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+        }
+
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
             const icon = document.getElementById('menu-icon');
             nav.classList.toggle('active');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
-        }
-
-        // Funcția pentru deschiderea imaginii mari
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
         }
     </script>
 </body>
