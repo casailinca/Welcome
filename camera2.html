@@ -7,84 +7,110 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --glass: rgba(255, 255, 255, 0.7); --border: rgba(255, 255, 255, 0.4); --dark: #1d1d1f; }
+        :root {
+            --primary: #1d1d1f;
+            --bg: #f5f5f7;
+            --border: rgba(0, 0, 0, 0.08);
+            --glass: rgba(255, 255, 255, 0.7);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
             font-family: 'Montserrat', sans-serif; 
-            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); 
+            background-color: var(--bg); 
             padding: 20px;
-            animation: fadeInPage 0.8s ease-out;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        @keyframes fadeInPage { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        .back-btn { text-decoration: none; color: var(--dark); display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-weight: 400; }
+        .container { width: 100%; max-width: 500px; margin: 0 auto; }
 
-        /* Grila Media */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; padding-bottom: 50px; }
-        .media-card { background: var(--glass); border-radius: 25px; padding: 8px; border: 1px solid var(--border); cursor: pointer; position: relative; transition: transform 0.2s; }
-        .media-card:active { transform: scale(0.96); }
-        .media-box { aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; background: #000; }
-        .media-box img, .media-box video { width: 100%; height: 100%; object-fit: cover; }
+        .back-btn { 
+            text-decoration: none; 
+            color: var(--primary); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
 
-        /* Iconiță Play pentru Video */
-        .video-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 2.5rem; opacity: 0.8; text-shadow: 0 0 10px rgba(0,0,0,0.5); pointer-events: none; }
+        h1 { font-weight: 600; font-size: 2rem; margin-bottom: 5px; color: var(--primary); }
+        .room-specs { color: #86868b; font-size: 0.85rem; margin-bottom: 25px; display: flex; gap: 15px; }
 
-        /* Lightbox */
-        #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 4000; padding: 20px; }
-        #lightbox-content { max-width: 100%; max-height: 90vh; display: flex; align-items: center; justify-content: center; }
-        #lightbox img, #lightbox video { max-width: 100%; max-height: 85vh; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        #lightbox.active { display: flex; }
+        /* Header Poza Mare */
+        .main-header-img {
+            width: 100%;
+            aspect-ratio: 4 / 5; /* Format portret pentru impact pe mobil */
+            border-radius: 35px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .main-header-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Grila de poze secundare */
+        .room-gallery { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
+            margin-bottom: 100px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+        }
+
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
         /* Meniu Hamburger */
-        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: var(--glass); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); cursor: pointer; z-index: 3000; }
-        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(25px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
+        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 3000; }
+        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
-        .nav-item { text-decoration: none; color: var(--dark); font-size: 1.3rem; display: flex; justify-content: center; }
     </style>
 </head>
 <body>
 
+    <div class="container">
+        <a href="camere_selection.html" class="back-btn"><i class="fas fa-arrow-left"></i> Camere</a>
+        
+        <h1>Camera 2</h1>
+        <div class="room-specs">
+            <span><i class="fas fa-bed"></i> Pat Matrimonial</span>
+        </div>
+
+        <div class="main-header-img">
+            <img src="cam2_2.jpg" alt="Camera 2 Main">
+        </div>
+        <h3 style="font-weight: 400; margin: 25px 0 15px 0; font-size: 1rem;">Prezentare Video</h3>
+<div style="width: 100%; aspect-ratio: 9 / 16; border-radius: 35px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid var(--border); background: #000;">
+    <video width="100%" height="100%" controls style="object-fit: cover;" poster="cam2_2.jpg">
+        <source src="vid2.mp4" type="video/mp4">
+        Browserul tău nu suportă video HTML5.
+    </video>
+</div>
+
+    </div>
+
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
-        <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
-        <a href="destinations.html" class="nav-item"><i class="fas fa-mountain"></i></a>
         <a href="spaces.html" class="nav-item"><i class="fas fa-bed"></i></a>
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
-
-    <a href="camere_selection.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi la Camere</a>
-    
-    <h1 style="font-weight: 300; margin-bottom: 25px;">Camera 2</h1>
-
-    <div class="gallery-grid">
-        <div class="media-card" onclick="openLightbox(this, 'video')">
-            <div class="media-box">
-                <video src="vid2.mp4" muted playsinline></video>
-                <div class="video-badge"><i class="fas fa-play"></i></div>
-            </div>
-        </div>
-
-        <div class="media-card" onclick="openLightbox(this, 'image')">
-            <div class="media-box">
-                <img src="cam2_1.jpg">
-            </div>
-        </div>
-
-        <div class="media-card" onclick="openLightbox(this, 'image')">
-            <div class="media-box">
-                <img src="cam2_2.jpg">
-            </div>
-        </div>
-    </div>
-
-    <div id="lightbox" onclick="closeLightbox()">
-        <div id="lightbox-content" onclick="event.stopPropagation()">
-            </div>
-    </div>
 
     <script>
         function toggleMenu() {
@@ -93,28 +119,6 @@
             nav.classList.toggle('active');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
-        }
-
-        function openLightbox(element, type) {
-            const lightbox = document.getElementById('lightbox');
-            const content = document.getElementById('lightbox-content');
-            
-            if (type === 'video') {
-                const videoSrc = element.querySelector('video').src;
-                content.innerHTML = `<video src="${videoSrc}" controls autoplay playsinline style="width:100%;"></video>`;
-            } else {
-                const imgSrc = element.querySelector('img').src;
-                content.innerHTML = `<img src="${imgSrc}">`;
-            }
-            
-            lightbox.classList.add('active');
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            const content = document.getElementById('lightbox-content');
-            content.innerHTML = ''; // Oprim video-ul când închidem
-            lightbox.classList.remove('active');
         }
     </script>
 </body>
