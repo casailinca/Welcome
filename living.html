@@ -3,80 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Living | Casa Ilinca</title>
+    <title>Living & Bucătărie | Casa Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --glass: rgba(255, 255, 255, 0.7); --border: rgba(255, 255, 255, 0.4); --dark: #1d1d1f; }
+        :root {
+            --primary: #1d1d1f;
+            --bg: #f5f5f7;
+            --glass: rgba(255, 255, 255, 0.8);
+            --border: rgba(0, 0, 0, 0.05);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
             font-family: 'Montserrat', sans-serif; 
-            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); 
+            background-color: var(--bg); 
             padding: 20px;
-            animation: fadeInPage 0.8s ease-out;
+            color: var(--primary);
         }
 
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .container { width: 100%; max-width: 500px; margin: 0 auto; }
+
+        .back-btn { 
+            text-decoration: none; 
+            color: var(--primary); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-bottom: 20px;
+            font-size: 1rem;
         }
 
-        .back-btn { text-decoration: none; color: var(--dark); display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-weight: 400; }
+        h1 { font-weight: 400; font-size: 2.2rem; margin-bottom: 30px; letter-spacing: -1px; }
 
-        /* Grila poze 3:4 */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; padding-bottom: 50px; }
-        .img-card { background: var(--glass); border-radius: 25px; padding: 8px; border: 1px solid var(--border); cursor: pointer; transition: transform 0.2s; }
-        .img-card:active { transform: scale(0.96); }
-        .img-box { aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        /* Grila de poze */
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; /* Spațiul dintre poze */
+            padding-bottom: 100px;
+        }
 
-        /* Lightbox */
-        #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 4000; padding: 20px; }
-        #lightbox img { max-width: 100%; max-height: 90vh; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        #lightbox.active { display: flex; }
+        /* Stilul nou pentru imagini fără margini albe */
+        .gallery-grid img { 
+            width: 100%; 
+            aspect-ratio: 1 / 1; /* Pătrate perfecte */
+            object-fit: cover; 
+            border-radius: 25px; /* Colțuri rotunjite direct pe poză */
+            display: block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
 
-        /* Meniu Hamburger */
-        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: var(--glass); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); cursor: pointer; z-index: 3000; }
-        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(25px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
+        /* Meniu Navigație Floating */
+        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; }
+        nav { position: fixed; bottom: 100px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
-        .nav-item { text-decoration: none; color: var(--dark); font-size: 1.3rem; display: flex; justify-content: center; }
+        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.3rem; text-align: center; }
     </style>
 </head>
 <body>
 
+    <div class="container">
+        <a href="spaces.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi</a>
+        
+        <h1>Living & Bucătărie</h1>
+
+        <div class="gallery-grid">
+            <img src="living1.jpg" alt="Living 1">
+            <img src="living2.jpg" alt="Living 2">
+            <img src="living3.jpg" alt="Bucatarie">
+            <img src="living4.jpg" alt="Hol">
+            </div>
+    </div>
+
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
-        <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
-        <a href="destinations.html" class="nav-item"><i class="fas fa-mountain"></i></a>
         <a href="spaces.html" class="nav-item"><i class="fas fa-bed"></i></a>
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
-
-    <a href="interior_selection.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi</a>
-    
-    <h1 style="font-weight: 300; margin-bottom: 25px;">Living & Bucătărie</h1>
-
-    <div class="gallery-grid">
-        <div class="img-card" onclick="openLightbox(this)">
-            <div class="img-box"><img src="liv1.jpg"></div>
-        </div>
-        <div class="img-card" onclick="openLightbox(this)">
-            <div class="img-box"><img src="liv2.jpg"></div>
-        </div>
-        <div class="img-card" onclick="openLightbox(this)">
-            <div class="img-box"><img src="liv3.jpg"></div>
-        </div>
-        <div class="img-card" onclick="openLightbox(this)">
-            <div class="img-box"><img src="liv4.jpg"></div>
-        </div>
-        </div>
-
-    <div id="lightbox" onclick="this.classList.remove('active')">
-        <img src="" id="lightbox-img">
-    </div>
 
     <script>
         function toggleMenu() {
@@ -85,14 +93,6 @@
             nav.classList.toggle('active');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
-        }
-
-        function openLightbox(element) {
-            const src = element.querySelector('img').src;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
         }
     </script>
 </body>
