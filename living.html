@@ -23,8 +23,9 @@
             color: var(--primary);
         }
 
-        .container { width: 100%; max-width: 500px; margin: 0 auto; }
+        .container { width: 100%; max-width: 600px; margin: 0 auto; }
 
+        /* Buton Înapoi - Acum duce la spaces.html */
         .back-btn { 
             text-decoration: none; 
             color: var(--primary); 
@@ -33,26 +34,28 @@
             gap: 8px; 
             margin-bottom: 20px;
             font-size: 1rem;
+            font-weight: 500;
         }
 
-        h1 { font-weight: 400; font-size: 2.2rem; margin-bottom: 30px; letter-spacing: -1px; }
+        h1 { font-weight: 400; font-size: 2rem; margin-bottom: 25px; letter-spacing: -1px; }
 
-        /* Grila de poze */
+        /* Grila de poze - Schimbată la 1 coloană pentru dimensiune maximă */
         .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 15px; /* Spațiul dintre poze */
-            padding-bottom: 100px;
+            display: flex;
+            flex-direction: column; 
+            gap: 25px; /* Spațiu mai mare între pozele mari */
+            padding-bottom: 120px;
         }
 
-        /* Stilul nou pentru imagini fără margini albe */
         .gallery-grid img { 
             width: 100%; 
-            aspect-ratio: 1 / 1; /* Pătrate perfecte */
+            /* Am scos aspect-ratio fix pentru a lăsa pozele să se vadă întregi, 
+               sau poți folosi 4/3 pentru un aspect cinematografic */
+            aspect-ratio: 4 / 3; 
             object-fit: cover; 
-            border-radius: 25px; /* Colțuri rotunjite direct pe poză */
+            border-radius: 30px; 
             display: block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid var(--border);
         }
 
@@ -66,7 +69,7 @@
 <body>
 
     <div class="container">
-        <a href="spaces.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi</a>
+        <a href="spaces.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi la Spații</a>
         
         <h1>Living & Bucătărie</h1>
 
@@ -75,7 +78,7 @@
             <img src="liv2.jpg" alt="Living 2">
             <img src="liv3.jpg" alt="Bucatarie">
             <img src="liv4.jpg" alt="Hol">
-            </div>
+        </div>
     </div>
 
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
