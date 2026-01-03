@@ -7,78 +7,161 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --glass: rgba(255, 255, 255, 0.7); --border: rgba(255, 255, 255, 0.4); --dark: #1d1d1f; }
+        :root {
+            --primary: #1d1d1f;
+            --accent: #d4af37;
+            --bg: #f5f5f7;
+            --glass: rgba(255, 255, 255, 0.8);
+            --border: rgba(0, 0, 0, 0.05);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
             font-family: 'Montserrat', sans-serif; 
-            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); 
-            min-height: 100vh; 
+            background-color: var(--bg); 
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeInPage 0.8s ease-out;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        @keyframes fadeInPage {
+        @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .container { width: 100%; max-width: 500px; }
+        .container { width: 100%; max-width: 500px; margin: 0 auto; }
 
         .back-btn { 
             text-decoration: none; 
-            color: var(--dark); 
+            color: var(--primary); 
             display: flex; 
             align-items: center; 
             gap: 8px; 
-            margin-bottom: 20px; 
+            margin-bottom: 10px; 
             font-size: 0.9rem;
         }
 
-        /* Stil Carduri Capitol */
-        .chapter-card { 
-            position: relative; 
-            width: 100%; 
-            aspect-ratio: 16 / 9; 
-            margin-bottom: 20px; 
-            border-radius: 25px; 
-            overflow: hidden; 
-            border: 1px solid var(--border); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-        
-        .chapter-card:active { transform: scale(0.97); }
-        
-        .chapter-image { width: 100%; height: 100%; object-fit: cover; }
-        
-        .chapter-overlay { 
-            position: absolute; 
-            bottom: 0; 
-            left: 0; 
-            right: 0; 
-            background: linear-gradient(transparent, rgba(0,0,0,0.8)); 
-            padding: 20px; 
-            color: white; 
+        h1 { font-weight: 600; font-size: 2.2rem; margin: 10px 0 30px 0; color: var(--primary); }
+
+        /* Stilul Split-Card */
+        .split-card {
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            text-decoration: none;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 160px;
+            border: 1px solid var(--border);
         }
 
-        .chapter-overlay h2 { font-size: 1.4rem; font-weight: 600; margin: 0; }
-        .chapter-overlay p { font-size: 0.85rem; font-weight: 300; opacity: 0.9; margin: 5px 0 0 0; }
+        /* Alternanța: al doilea card este inversat */
+        .split-card.reverse { flex-direction: row-reverse; }
+
+        .split-card:active { transform: scale(0.97); }
+
+        .card-media {
+            width: 40%;
+            overflow: hidden;
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            width: 60%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .category {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .card-content h2 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .card-content p {
+            font-size: 0.8rem;
+            color: #86868b;
+            line-height: 1.3;
+        }
+
+        .card-arrow {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
 
         /* Meniu Hamburger */
-        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: var(--glass); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); cursor: pointer; z-index: 3000; }
-        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(25px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
+        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 3000; }
+        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
-        .nav-item { text-decoration: none; color: var(--dark); font-size: 1.3rem; display: flex; justify-content: center; }
+        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.3rem; display: flex; justify-content: center; }
     </style>
 </head>
 <body>
 
-    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
+    <div class="container">
+        <a href="spaces.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi</a>
+        <h1>Interior</h1>
 
+        <a href="camere_selection.html" class="split-card">
+            <div class="card-media">
+                <img src="cam1_1.jpg">
+            </div>
+            <div class="card-content">
+                <span class="category">Dormitoare</span>
+                <h2>Camere</h2>
+                <p>4 dormitoare intime cu design cald și primitor.</p>
+                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+            </div>
+        </a>
+
+        <a href="living.html" class="split-card reverse">
+            <div class="card-media">
+                <img src="liv1.jpg">
+            </div>
+            <div class="card-content">
+                <span class="category">Zonă de zi</span>
+                <h2>Living</h2>
+                <p>Spațiu generos pentru socializare și bucătărie utilată.</p>
+                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+            </div>
+        </a>
+
+        <a href="bai.html" class="split-card">
+            <div class="card-media">
+                <img src="bM1.jpg">
+            </div>
+            <div class="card-content">
+                <span class="category">Relaxare</span>
+                <h2>Băi</h2>
+                <p>Dotări moderne și finisaje de calitate superioară.</p>
+                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -87,42 +170,6 @@
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
-
-    <div class="container">
-        <a href="spaces.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi la Spații</a>
-        
-        <h1 style="font-weight: 300; margin-bottom: 25px;">Interior</h1>
-
-        <a href="camere_selection.html" style="text-decoration: none;">
-            <div class="chapter-card">
-                <img src="cam1_1.jpg" class="chapter-image"> 
-                <div class="chapter-overlay">
-                    <h2>Camere</h2>
-                    <p>Dormitoare spațioase și intime</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="living.html" style="text-decoration: none;">
-            <div class="chapter-card">
-                <img src="liv1.jpg" class="chapter-image">
-                <div class="chapter-overlay">
-                    <h2>Living & Bucătărie</h2>
-                    <p>Spațiul ideal pentru socializare</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="bai.html" style="text-decoration: none;">
-            <div class="chapter-card">
-                <img src="c_bai.JPG" class="chapter-image">
-                <div class="chapter-overlay">
-                    <h2>Băi</h2>
-                    <p>Eleganță și funcționalitate</p>
-                </div>
-            </div>
-        </a>
-    </div>
 
     <script>
         function toggleMenu() {
