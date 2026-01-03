@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liv & Bucătărie | Casa Ilinca</title>
+    <title>Living & Bucătărie | Casa Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -21,6 +21,7 @@
             background-color: var(--bg); 
             padding: 20px;
             color: var(--primary);
+            overflow-x: hidden;
         }
 
         .container { width: 95%; max-width: 1200px; margin: 0 auto; }
@@ -36,9 +37,9 @@
             font-weight: 500;
         }
 
-        h1 { font-weight: 400; font-size: 2rem; margin-bottom: 30px; letter-spacing: -1px; }
+        h1 { font-weight: 400; font-size: 2.2rem; margin-bottom: 30px; letter-spacing: -1px; }
 
-        /* Grila poze */
+        /* Grila poze adaptabilă */
         .gallery-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -53,25 +54,26 @@
             border-radius: 25px; 
             display: block;
             cursor: zoom-in;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
             border: 1px solid var(--border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .gallery-grid img:hover { transform: scale(1.02); }
+        .gallery-grid img:hover { transform: scale(1.03); }
 
-        /* --- LIGHTBOX CU ANIMAȚIE --- */
+        /* --- LIGHTBOX PREMIUM --- */
         .lightbox {
             display: none;
             position: fixed;
             z-index: 9999;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(15px);
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.7s ease; /* Fundalul apare lent */
         }
 
         .lightbox.active {
@@ -81,31 +83,46 @@
 
         .lightbox img {
             max-width: 90%;
-            max-height: 85%;
-            border-radius: 15px;
-            transform: scale(0.8);
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            max-height: 80%;
+            border-radius: 20px;
+            transform: scale(0.7); /* Pornește de la mic */
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); /* Animație lungă și fluidă */
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
         .lightbox.active img {
-            transform: scale(1);
+            transform: scale(1); /* Crește spre utilizator */
         }
 
+        /* Butonul X vizibil stil iOS */
         .close-lightbox {
-            position: absolute;
-            top: 30px;
-            right: 30px;
+            position: fixed;
+            top: 40px;
+            right: 25px;
             color: white;
-            font-size: 35px;
+            font-size: 28px;
             cursor: pointer;
+            z-index: 10001;
+            background: rgba(255, 255, 255, 0.15);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* Meniu Floating */
+        /* Meniu Navigație */
         .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; }
         nav { position: fixed; bottom: 100px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
         .nav-item { text-decoration: none; color: var(--primary); font-size: 1.3rem; text-align: center; }
+
+        @media (min-width: 768px) {
+            h1 { font-size: 3rem; text-align: center; margin-top: 40px; }
+        }
     </style>
 </head>
 <body>
@@ -123,7 +140,7 @@
     </div>
 
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
         <img id="lightbox-img" src="">
     </div>
 
@@ -141,11 +158,13 @@
             const img = document.getElementById('lightbox-img');
             img.src = src;
             lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Blochează scroll-ul paginii când poza e mare
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Reia scroll-ul
         }
 
         function toggleMenu() {
