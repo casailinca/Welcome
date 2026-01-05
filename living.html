@@ -26,6 +26,7 @@
 
         .container { width: 95%; max-width: 1200px; margin: 0 auto; }
 
+        /* CORECtAT: Butonul trimite acum la interior.html */
         .back-btn { 
             text-decoration: none; 
             color: var(--primary); 
@@ -39,7 +40,6 @@
 
         h1 { font-weight: 400; font-size: 2.2rem; margin-bottom: 30px; letter-spacing: -1px; }
 
-        /* Grila poze adaptabilă */
         .gallery-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -61,7 +61,7 @@
 
         .gallery-grid img:hover { transform: scale(1.03); }
 
-        /* --- LIGHTBOX PREMIUM --- */
+        /* LIGHTBOX PREMIUM 0.7s */
         .lightbox {
             display: none;
             position: fixed;
@@ -73,7 +73,7 @@
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.7s ease; /* Fundalul apare lent */
+            transition: opacity 0.7s ease;
         }
 
         .lightbox.active {
@@ -85,16 +85,15 @@
             max-width: 90%;
             max-height: 80%;
             border-radius: 20px;
-            transform: scale(0.7); /* Pornește de la mic */
-            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); /* Animație lungă și fluidă */
+            transform: scale(0.7);
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
         .lightbox.active img {
-            transform: scale(1); /* Crește spre utilizator */
+            transform: scale(1);
         }
 
-        /* Butonul X vizibil stil iOS */
         .close-lightbox {
             position: fixed;
             top: 40px;
@@ -114,7 +113,6 @@
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* Meniu Navigație */
         .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; }
         nav { position: fixed; bottom: 100px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
@@ -128,14 +126,14 @@
 <body>
 
     <div class="container">
-        <a href="spaces.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi la Spații</a>
-        <h1>Liv & Bucătărie</h1>
+        <a href="interior.html" class="back-btn"><i class="fas fa-arrow-left"></i> Înapoi la Interior</a>
+        <h1>Living & Bucătărie</h1>
 
         <div class="gallery-grid">
-            <img src="liv1.jpg" alt="Liv 1" onclick="openLightbox(this.src)">
-            <img src="liv2.jpg" alt="Liv 2" onclick="openLightbox(this.src)">
-            <img src="liv3.jpg" alt="Liv 3" onclick="openLightbox(this.src)">
-            <img src="liv4.jpg" alt="Liv 4" onclick="openLightbox(this.src)">
+            <img src="liv1.jpg" alt="Living 1" onclick="openLightbox(this.src)">
+            <img src="liv2.jpg" alt="Living 2" onclick="openLightbox(this.src)">
+            <img src="liv3.jpg" alt="Living 3" onclick="openLightbox(this.src)">
+            <img src="liv4.jpg" alt="Living 4" onclick="openLightbox(this.src)">
         </div>
     </div>
 
@@ -158,13 +156,13 @@
             const img = document.getElementById('lightbox-img');
             img.src = src;
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Blochează scroll-ul paginii când poza e mare
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Reia scroll-ul
+            document.body.style.overflow = 'auto';
         }
 
         function toggleMenu() {
