@@ -3,82 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destinații | Ilinca</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Destinații | Casa Ilinca</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { 
-            --glass: rgba(255, 255, 255, 0.7); 
-            --border: rgba(255, 255, 255, 0.4); 
-            --dark: #1d1d1f; 
+        :root {
+            --primary: #1d1d1f;
+            --accent: #d4af37;
+            --bg: #fcfaf7;
+            --glass: rgba(255, 255, 255, 0.9);
+            --border: rgba(0, 0, 0, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
+        
         body { 
             font-family: 'Montserrat', sans-serif; 
-            background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            padding: 40px 20px; 
+            background-color: var(--bg); 
+            color: var(--primary);
+            padding: 20px;
+            overflow-x: hidden;
         }
 
-        /* --- MENIU HAMBURGER --- */
-        .menu-toggle { 
-            position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; 
-            background: var(--glass); backdrop-filter: blur(10px); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; 
-            border: 1px solid var(--border); cursor: pointer; z-index: 3000; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        .container { width: 100%; max-width: 1000px; margin: 0 auto; }
+
+        /* Animație de intrare */
+        .fade-in { animation: reveal 1s ease-out forwards; }
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        nav { 
-            position: fixed; bottom: 95px; right: 25px; background: var(--glass); 
-            backdrop-filter: blur(25px); border-radius: 25px; border: 1px solid var(--border); 
-            display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; 
-            transform: translateY(20px); opacity: 0; visibility: hidden; 
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        /* Hero Section */
+        header { 
+            text-align: center; 
+            padding: 60px 0 40px 0; 
+        }
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(2.5rem, 8vw, 4rem); 
+            font-weight: 600; 
+            font-style: italic;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+        .subtitle { 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-size: 0.8rem; 
+            color: var(--accent);
+            font-weight: 600;
         }
 
+        /* Grid editorial pentru destinații */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+            padding-bottom: 120px;
+        }
+
+        .dest-card {
+            background: white;
+            border: 1px solid var(--border);
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        }
+
+        .dest-media {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .dest-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1.2s ease;
+        }
+
+        .dest-card:hover .dest-media img {
+            transform: scale(1.1);
+        }
+
+        .dest-content {
+            padding: 30px;
+            text-align: left;
+        }
+
+        .dest-content span {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .dest-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .dest-content p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Floating Nav Menu */
+        .menu-toggle { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; cursor: pointer; }
+        nav { position: fixed; bottom: 105px; right: 30px; background: var(--glass); backdrop-filter: blur(15px); border-radius: 30px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.4s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
+        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; }
 
-        .nav-item { 
-            text-decoration: none; color: var(--dark); font-size: 1.3rem; 
-            display: flex; justify-content: center; transition: 0.3s; 
-        }
-
-        /* --- CONTINUT DESTINATII --- */
-        .container { width: 100%; max-width: 600px; animation: fadeIn 0.8s ease; }
-
-        h1 { font-weight: 300; margin-bottom: 30px; letter-spacing: 2px; text-align: center; }
-
-        .dest-card { 
-            background: rgba(255, 255, 255, 0.4); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid var(--border); 
-            border-radius: 30px; 
-            padding: 25px; 
-            margin-bottom: 20px; 
-            transition: 0.3s;
-        }
-
-        .dest-card h3 { font-weight: 600; margin-bottom: 10px; font-size: 1.1rem; color: #333; }
-        .dest-card p { font-size: 0.9rem; line-height: 1.6; color: #555; }
-
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(10px); } 
-            to { opacity: 1; transform: translateY(0); } 
+        @media (max-width: 600px) {
+            .dest-media { height: 250px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars" id="menu-icon"></i>
+    <div class="container fade-in">
+        <header>
+            <p class="subtitle">Descoperă Neamțul</p>
+            <h1>Locuri de <em>poveste</em></h1>
+        </header>
+
+        <div class="destinations-grid">
+            <div class="dest-card">
+                <div class="dest-media">
+                    <img src="ceahlau.jpg" alt="Masivul Ceahlau">
+                </div>
+                <div class="dest-content">
+                    <span>Munte • 15 min distanță</span>
+                    <h2>Masivul Ceahlău</h2>
+                    <p>Olimpul Moldovei te așteaptă cu trasee legendare spre Vârful Toaca și Cascada Duruitoarea.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-media">
+                    <img src="bicaz.jpg" alt="Lacul Bicaz">
+                </div>
+                <div class="dest-content">
+                    <span>Relaxare • 20 min distanță</span>
+                    <h2>Lacul Izvorul Muntelui</h2>
+                    <p>Cel mai mare lac artificial din România, perfect pentru plimbări cu barca sub privirea muntelui.</p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-media">
+                    <img src="chei.jpg" alt="Cheile Bicazului">
+                </div>
+                <div class="dest-content">
+                    <span>Peisaj • 40 min distanță</span>
+                    <h2>Cheile Bicazului</h2>
+                    <p>Un spectacol al naturii sculptat în piatră, drumul care leagă Moldova de Transilvania.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -88,38 +186,13 @@
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
 
-    <div class="container">
-        <h1>Destinații</h1>
-
-        <div class="dest-card">
-            <h3>Masivul Ceahlău</h3>
-            <p>Muntele Ceahlău este perceput nu doar ca o atracție turistică, ci și ca un spațiu care influențează starea interioară a vizitatorului. Siluetele sale impunătoare, liniștea pădurilor și sentimentul vast de libertate pot genera o stare de calm, reflecție și claritate mentală. Urcarea devine o scurtă explorare a propriilor limite, iar panorama de pe vârf oferă o perspectivă simbolică asupra problemelor personale. În acest fel, Ceahlăul devine un loc care combină frumusețea naturală cu un efect psihologic de echilibrare și introspecție.</p>
-        </div>
-
-        <div class="dest-card">
-            <h3>Lacul Bicaz</h3>
-            <p>Lacul Bicaz te atrage prin liniștea sa profundă și prin jocul mereu schimbător al luminii pe apă, care limpezește gândurile și trezește curiozitatea. Contrastul dintre lac și baraj creează o atmosferă unică, ce te face să simți că descoperi ceva nou despre tine cu fiecare privire. E locul în care merită să ajungi măcar o dată, pentru că simpla prezență acolo te încarcă cu o energie discretă, dar memorabilă.</p>
-        </div>
-
-        <div class="dest-card">
-            <h3>Cheile Bicazului</h3>
-            <p>O minune naturală sculptată în calcar, situată la mică distanță, oferind unul dintre cele mai spectaculoase drumuri din țară.</p>
-        </div>
-    </div>
-
     <script>
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
             const icon = document.getElementById('menu-icon');
             nav.classList.toggle('active');
-            
-            if (nav.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         }
     </script>
 </body>
