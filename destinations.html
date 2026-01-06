@@ -214,12 +214,22 @@
 
     <script>
         function toggleMenu() {
-            const nav = document.getElementById('main-nav');
-            const icon = document.getElementById('menu-icon');
-            nav.classList.toggle('active');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        }
+    const nav = document.getElementById('main-nav');
+    const icon = document.querySelector('.menu-toggle i');
+    
+    // Toggle clasa pentru meniu
+    nav.classList.toggle('active');
+    
+    // Schimbare iconiță: dacă are bars, pune times (X), altfel pune bars
+    if (nav.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+}
+
     </script>
 </body>
 </html>
