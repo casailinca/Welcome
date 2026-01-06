@@ -11,7 +11,7 @@
             --primary: #1d1d1f;
             --accent: #8e8e93;
             --bg: #f5f5f7;
-            --glass: rgba(255, 255, 255, 0.7);
+            --glass: rgba(255, 255, 255, 0.8);
             --border: rgba(0, 0, 0, 0.05);
         }
 
@@ -22,40 +22,27 @@
             background-color: var(--bg);
             color: var(--primary);
             overflow-x: hidden;
+            overscroll-behavior-y: auto;
         }
 
         body { 
             font-family: 'Montserrat', sans-serif; 
             line-height: 1.6;
-        }
-
-        /* Fundal decorativ (opțional - un cerc soft de culoare) */
-        .bg-glow {
-            position: fixed;
-            top: -150px;
-            right: -150px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(200,200,200,0.2) 0%, rgba(245,245,247,0) 70%);
-            z-index: -1;
+            padding: 20px;
         }
 
         .container { 
             width: 100%; 
-            max-width: 550px; 
+            max-width: 500px; 
             margin: 0 auto; 
-            padding: 40px 25px 120px 25px;
-            animation: fadeIn 0.8s ease-out;
+            animation: fadeInSimple 0.8s ease-out forwards;
+            padding-bottom: 120px;
+            text-align: center; /* Pentru a centra elementele din interior */
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInSimple {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        /* Header Style */
-        .header-section {
-            margin-bottom: 40px;
         }
 
         .back-btn { 
@@ -63,75 +50,88 @@
             color: var(--accent); 
             display: inline-flex; 
             align-items: center; 
-            gap: 5px; 
+            gap: 8px; 
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            width: 100%;
+            justify-content: flex-start;
         }
 
         h1 { 
             font-weight: 600; 
-            font-size: 2.5rem; 
-            letter-spacing: -1px;
-            margin-bottom: 10px;
+            font-size: 2.8rem; 
+            letter-spacing: -1.5px;
+            margin-bottom: 5px;
+            line-height: 1.1;
+            text-align: left;
         }
 
         .subtitle {
             color: var(--accent);
             font-size: 1.1rem;
             font-weight: 300;
+            margin-bottom: 35px;
+            text-align: left;
         }
 
-        /* Card Text Section */
+        /* --- IMAGINEA CERC --- */
+        .hero-img-circle {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 35px auto;
+            display: block;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 4px solid white; /* Rama alba pentru contrast */
+        }
+
         .story-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid white;
-            padding: 30px;
-            border-radius: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
-            margin-bottom: 30px;
+            padding: 35px 25px;
+            border-radius: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            text-align: left; /* Textul ramane aliniat la stanga pentru citire usoara */
         }
 
         .story-text {
             font-size: 1.05rem;
             font-weight: 400;
             color: #3a3a3c;
-            text-align: justify;
-            hyphens: auto;
         }
 
-        .highlight {
-            display: block;
-            margin-top: 20px;
-            padding-top: 20px;
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            margin-top: 30px;
+            padding-top: 25px;
             border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .highlight-box span {
+            font-weight: 600;
             font-style: italic;
             color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Imagine decorativă mică în text */
-        .decoration-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 30px;
-            margin-bottom: 25px;
         }
 
         /* --- MENIU --- */
         .menu-toggle { 
             position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; 
             background: white; border-radius: 50%; display: flex; align-items: center; 
-            justify-content: center; font-size: 1.2rem; border: 1px solid rgba(0,0,0,0.05); 
+            justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); 
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; 
         }
 
         nav { 
             position: fixed; bottom: 105px; right: 30px; background: rgba(255,255,255,0.85); 
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 35px; 
-            border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; 
+            border: 1px solid var(--border); display: flex; flex-direction: column; 
             padding: 15px 0; gap: 15px; z-index: 2000; width: 60px; align-items: center; 
             visibility: hidden; opacity: 0; transform: translateY(20px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -144,31 +144,31 @@
 </head>
 <body>
 
-    <div class="bg-glow"></div>
-
     <div class="container">
-        <div class="header-section">
-            <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i> Acasă</a>
-            <h1>Noi</h1>
-            <p class="subtitle">Povestea de la poalele Ceahlăului</p>
-        </div>
+        <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i> Înapoi</a>
+        
+        <h1>Noi</h1>
+        <p class="subtitle">Povestea de la poalele Ceahlăului</p>
 
-        <img src="c_ext.jpg" alt="Casa Ilinca Exterior" class="decoration-img">
+        <img src="exterior_1.jpg" alt="Casa Ilinca" class="hero-img-circle">
 
         <div class="story-card">
             <div class="story-text">
-                Situată în inima Munților Ceahlău, în pitoreasca localitate Izvorul Muntelui, pensiunea noastră este punctul ideal de plecare pentru explorarea uneia dintre cele mai frumoase zone montane din România. 
-                <br><br>
-                Aproape de Lacul Bicaz și de traseele spectaculoase ale Ceahlăului, oferim oaspeților noștri cazare confortabilă, liniște și priveliști deosebite. 
-                <br><br>
-                Fie că îți dorești drumeții, plimbări în natură sau pur și simplu relaxare departe de agitație, aici vei găsi cadrul perfect pentru o vacanță reușită, în orice anotimp.
+                <p>Situată în inima Munților Ceahlău, în pitoreasca localitate Izvorul Muntelui, pensiunea noastră este punctul ideal de plecare pentru explorarea uneia dintre cele mai frumoase zone montane din România.</p>
                 
-                <span class="highlight">Vă așteptăm cu drag să ne treceți pragul!</span>
+                <p>Aproape de Lacul Bicaz și de traseele spectaculoase ale Ceahlăului, oferim oaspeților noștri cazare confortabilă, liniște și priveliști deosebite.</p>
+                
+                <p>Fie că îți dorești drumeții, plimbări în natură sau pur și simplu relaxare departe de agitație, aici vei găsi cadrul perfect pentru o vacanță reușită, în orice anotimp.</p>
+                
+                <div class="highlight-box">
+                    <span>Vă așteptăm cu drag să ne treceți pragul!</span>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
