@@ -27,14 +27,12 @@
 
         .container { width: 100%; max-width: 1000px; margin: 0 auto; }
 
-        /* Animație de intrare */
         .fade-in { animation: reveal 1s ease-out forwards; }
         @keyframes reveal {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hero Section */
         header { 
             text-align: center; 
             padding: 60px 0 40px 0; 
@@ -55,7 +53,6 @@
             font-weight: 600;
         }
 
-        /* Grid editorial pentru destinații */
         .destinations-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -64,11 +61,16 @@
             padding-bottom: 120px;
         }
 
+        /* Cardul ca Link */
         .dest-card {
             background: white;
             border: 1px solid var(--border);
             transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
             position: relative;
+            text-decoration: none; /* Scoate sublinierea link-ului */
+            color: inherit; /* Păstrează culoarea textului */
+            display: flex;
+            flex-direction: column;
         }
 
         .dest-card:hover {
@@ -97,6 +99,9 @@
         .dest-content {
             padding: 30px;
             text-align: left;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .dest-content span {
@@ -119,9 +124,22 @@
             color: #666;
             line-height: 1.7;
             font-weight: 300;
+            margin-bottom: 20px;
         }
 
-        /* Floating Nav Menu */
+        /* Indicator navigare */
+        .nav-link-hint {
+            margin-top: auto;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .menu-toggle { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; cursor: pointer; }
         nav { position: fixed; bottom: 105px; right: 30px; background: var(--glass); backdrop-filter: blur(15px); border-radius: 30px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.4s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
@@ -141,7 +159,8 @@
         </header>
 
         <div class="destinations-grid">
-            <div class="dest-card">
+            
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Masivul+Ceahlau" target="_blank" class="dest-card">
                 <div class="dest-media">
                     <img src="ceahlau.jpg" alt="Masivul Ceahlau">
                 </div>
@@ -149,10 +168,11 @@
                     <span>Munte • 15 min distanță</span>
                     <h2>Masivul Ceahlău</h2>
                     <p>Olimpul Moldovei te așteaptă cu trasee legendare spre Vârful Toaca și Cascada Duruitoarea.</p>
+                    <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="dest-card">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Lacul+Izvorul+Muntelui" target="_blank" class="dest-card">
                 <div class="dest-media">
                     <img src="bicaz.jpg" alt="Lacul Bicaz">
                 </div>
@@ -160,10 +180,11 @@
                     <span>Relaxare • 20 min distanță</span>
                     <h2>Lacul Izvorul Muntelui</h2>
                     <p>Cel mai mare lac artificial din România, perfect pentru plimbări cu barca sub privirea muntelui.</p>
+                    <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="dest-card">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Cheile+Bicazului" target="_blank" class="dest-card">
                 <div class="dest-media">
                     <img src="chei.jpg" alt="Cheile Bicazului">
                 </div>
@@ -171,18 +192,21 @@
                     <span>Peisaj • 40 min distanță</span>
                     <h2>Cheile Bicazului</h2>
                     <p>Un spectacol al naturii sculptat în piatră, drumul care leagă Moldova de Transilvania.</p>
+                    <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
-            </div>
-            <div class="dest-card">
+            </a>
+
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Lacu+Rosu" target="_blank" class="dest-card">
                 <div class="dest-media">
                     <img src="lacurosu.jpg" alt="Lacu Roșu">
                 </div>
                 <div class="dest-content">
                     <span>Natură • 50 min distanță</span>
                     <h2>Lacu Roșu</h2>
-                    <p>O enigmă a naturii formată prin prăbușirea unui versant, unde trunchiurile brazilor de odinioară străpung oglinda apei într-un peisaj de o melancolie fascinantă.</p>
+                    <p>O enigmă a naturii formată prin prăbușirea unui versant, unde trunchiurile brazilor de odinioară străpung oglinda apei.</p>
+                    <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
-            </div>
+            </a>
 
         </div>
     </div>
