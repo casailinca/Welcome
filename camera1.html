@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Camera 1 | Casa Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,28 +14,17 @@
             --glass: rgba(255, 255, 255, 0.9);
         }
 
-        /* Setări pentru a permite Pull-to-Refresh și scroll natural */
-        html, body { 
-            margin: 0; 
-            padding: 0; 
-            width: 100%; 
-            min-height: 100%;
-            background-color: var(--bg);
-            overflow-x: hidden; /* Previne mișcarea stânga-dreapta */
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            padding: 20px;
-        }
+        html, body { width: 100%; overflow-x: hidden; background-color: var(--bg); }
+        body { font-family: 'Montserrat', sans-serif; padding: 20px; }
 
-        /* Container cu animație simplă (fără mișcare pe verticală) */
         .container { 
             width: 100%; 
             max-width: 500px; 
             margin: 0 auto; 
             animation: fadeInSimple 0.6s ease-out forwards;
-            padding-bottom: 120px; /* Spațiu pentru a nu fi acoperit de meniul fix */
+            padding-bottom: 100px;
         }
 
         @keyframes fadeInSimple {
@@ -44,120 +33,53 @@
         }
 
         .back-btn { 
-            text-decoration: none; 
-            color: var(--primary); 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            margin-bottom: 15px;
-            font-size: 0.9rem;
+            text-decoration: none; color: var(--primary); display: flex; 
+            align-items: center; gap: 8px; margin-bottom: 15px; font-size: 0.9rem;
         }
 
         h1 { font-weight: 600; font-size: 2rem; margin-bottom: 5px; color: var(--primary); }
         .room-specs { color: #86868b; font-size: 0.85rem; margin-bottom: 25px; display: flex; gap: 15px; }
 
         .main-header-img {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            border-radius: 35px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
-            border: 1px solid var(--border);
+            width: 100%; aspect-ratio: 4 / 5; border-radius: 35px; overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); margin-bottom: 25px; border: 1px solid var(--border);
         }
-
         .main-header-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Video styling curat */
         .video-wrapper {
-            width: 100%; 
-            aspect-ratio: 9 / 16; 
-            border-radius: 35px; 
-            overflow: hidden; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
-            border: 1px solid var(--border); 
-            background: #000; 
+            width: 100%; aspect-ratio: 9 / 16; border-radius: 35px; overflow: hidden; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid var(--border); background: #000;
         }
-
         video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* Meniu Uniformizat */
         .menu-toggle { 
-            position: fixed; 
-            bottom: 30px; 
-            right: 30px; 
-            width: 60px; 
-            height: 60px; 
-            background: white; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 1.2rem; 
-            border: 1px solid var(--border); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            z-index: 3000; 
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; 
+            background: white; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; 
         }
 
         nav { 
-            position: fixed; 
-            bottom: 105px; 
-            right: 30px; 
-            background: var(--glass); 
-            backdrop-filter: blur(15px); 
-            border-radius: 35px; 
-            border: 1px solid var(--border); 
-            display: flex; 
-            flex-direction: column; 
-            padding: 15px 0; 
-            gap: 15px; 
-            z-index: 2000; 
-            width: 60px;
-            align-items: center; 
-            visibility: hidden; 
-            opacity: 0; 
-            transition: 0.3s ease;
+            position: fixed; bottom: 105px; right: 30px; background: var(--glass); 
+            backdrop-filter: blur(15px); border-radius: 35px; border: 1px solid var(--border); 
+            display: flex; flex-direction: column; padding: 15px 0; gap: 15px; z-index: 2000; 
+            width: 60px; align-items: center; visibility: hidden; opacity: 0; transition: 0.3s; 
         }
 
         nav.active { visibility: visible; opacity: 1; }
-        
-        .nav-item { 
-            text-decoration: none; 
-            color: var(--primary); 
-            font-size: 1.4rem; 
-            width: 40px; 
-            height: 40px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-
+        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <a href="camere_selection.html" class="back-btn"><i class="fas fa-arrow-left"></i> Camere</a>
-        
         <h1>Camera 1</h1>
-        <div class="room-specs">
-            <span><i class="fas fa-bed"></i> Pat Matrimonial</span>
-        </div>
-
-        <div class="main-header-img">
-            <img src="cam1_1.jpg" alt="Camera 1">
-        </div>
-
+        <div class="room-specs"><span><i class="fas fa-bed"></i> Pat Matrimonial</span></div>
+        <div class="main-header-img"><img src="cam1_1.jpg" alt="Camera 1"></div>
         <h3 style="font-weight: 400; margin: 25px 0 15px 0; font-size: 1rem;">Prezentare Video</h3>
-        <div class="video-wrapper">
-            <video controls poster="cam1_2.JPG">
-                <source src="vid1.mp4" type="video/mp4">
-            </video>
-        </div>
+        <div class="video-wrapper"><video controls poster="cam1_2.JPG"><source src="vid1.mp4" type="video/mp4"></video></div>
     </div>
-
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-    
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -166,17 +88,12 @@
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
-
     <script>
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
             const icon = document.querySelector('.menu-toggle i');
             nav.classList.toggle('active');
-            if (nav.classList.contains('active')) {
-                icon.className = 'fas fa-times';
-            } else {
-                icon.className = 'fas fa-bars';
-            }
+            icon.className = nav.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
         }
     </script>
 </body>
