@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Camera 1 | Casa Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,20 +14,29 @@
             --glass: rgba(255, 255, 255, 0.9);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* FIX SCROLL: Previne scroll-ul orizontal și spațiul gol infinit */
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            overflow-x: hidden;
+            background-color: var(--bg);
+        }
         
         body { 
             font-family: 'Montserrat', sans-serif; 
-            background-color: var(--bg); 
             padding: 20px;
-            /* Eliminat animația de pe body */
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animație mutată pe container */
+        /* FIX CONTAINER: Definește clar zona de conținut */
         .container { 
             width: 100%; 
             max-width: 500px; 
             margin: 0 auto; 
+            position: relative;
+            /* Spațiu la final pentru a nu permite scroll peste măsură */
+            padding-bottom: 60px; 
             animation: fadeIn 0.8s ease-out forwards;
         }
 
@@ -55,11 +64,25 @@
             border-radius: 35px;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border: 1px solid var(--border);
         }
 
         .main-header-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* VIDEO STYLING */
+        .video-wrapper {
+            width: 100%; 
+            aspect-ratio: 9 / 16; 
+            border-radius: 35px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+            border: 1px solid var(--border); 
+            background: #000; 
+            margin-bottom: 40px; /* Limitează înălțimea totală a paginii */
+        }
+
+        video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         /* --- MENIU UNIFORMIZAT --- */
         .menu-toggle { 
@@ -102,18 +125,7 @@
         }
 
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
-
-        .nav-item { 
-            text-decoration: none; 
-            color: var(--primary); 
-            font-size: 1.4rem; 
-            width: 40px; 
-            height: 40px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-
+        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
         .nav-item i { width: 24px; text-align: center; }
 
     </style>
@@ -133,8 +145,9 @@
         </div>
 
         <h3 style="font-weight: 400; margin: 25px 0 15px 0; font-size: 1rem;">Prezentare Video</h3>
-        <div style="width: 100%; aspect-ratio: 9 / 16; border-radius: 35px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid var(--border); background: #000; margin-bottom: 50px;">
-            <video width="100%" height="100%" controls style="object-fit: cover;" poster="cam1_2.JPG">
+        
+        <div class="video-wrapper">
+            <video controls poster="cam1_2.JPG">
                 <source src="vid1.mp4" type="video/mp4">
                 Browserul tău nu suportă video HTML5.
             </video>
