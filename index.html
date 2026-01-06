@@ -24,69 +24,71 @@
             overflow: hidden; 
         }
         
-        /* --- MENIU HAMBURGER UNIFORMIZAT --- */
-        .menu-toggle { 
-            position: fixed; 
-            bottom: 30px; 
-            right: 30px; 
-            width: 60px; 
-            height: 60px; 
-            background: var(--glass); 
-            backdrop-filter: blur(10px); 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 1.2rem; 
-            border: 1px solid var(--border); 
-            cursor: pointer; 
-            z-index: 3000; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-        }
+        /* --- MENIU UNIFORMIZAT PENTRU TOATE PAGINILE --- */
+.menu-toggle { 
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    width: 60px; 
+    height: 60px; 
+    background: white; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.2rem; 
+    border: 1px solid rgba(0, 0, 0, 0.08); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+    z-index: 3000; 
+    cursor: pointer; 
+}
 
-        nav { 
-            position: fixed; 
-            bottom: 105px; 
-            right: 30px; 
-            background: var(--glass); 
-            backdrop-filter: blur(25px) saturate(180%); 
-            border-radius: 35px; 
-            border: 1px solid var(--border); 
-            display: flex; 
-            flex-direction: column; 
-            padding: 15px 0; 
-            gap: 15px; 
-            z-index: 2000; 
-            width: 60px; /* Latime fixa */
-            align-items: center; 
-            transform: translateY(20px); 
-            opacity: 0; 
-            visibility: hidden; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-        }
+nav { 
+    position: fixed; 
+    bottom: 105px; 
+    right: 30px; 
+    background: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(15px); 
+    border-radius: 35px; 
+    border: 1px solid rgba(0, 0, 0, 0.08); 
+    display: flex; 
+    flex-direction: column; 
+    padding: 15px 0; 
+    gap: 15px; 
+    z-index: 2000; 
+    
+    /* ACESTEA SUNT CHEIA: */
+    width: 60px;           /* Aceeași lățime peste tot */
+    align-items: center;    /* Centrează perfect iconițele pe mijloc */
 
-        nav.active { 
-            transform: translateY(0); 
-            opacity: 1; 
-            visibility: visible; 
-        }
+    transform: translateY(20px); 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
 
-        .nav-item { 
-            text-decoration: none; 
-            color: var(--dark); 
-            font-size: 1.4rem; 
-            width: 40px; 
-            height: 40px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            transition: 0.3s; 
-        }
+nav.active { 
+    transform: translateY(0); 
+    opacity: 1; 
+    visibility: visible; 
+}
 
-        .nav-item i {
-            width: 24px;
-            text-align: center;
-        }
+.nav-item { 
+    text-decoration: none; 
+    color: #1d1d1f; 
+    font-size: 1.4rem; 
+    width: 40px; 
+    height: 40px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.nav-item i {
+    width: 24px;       /* Forțează iconița într-un spațiu egal */
+    text-align: center; /* Rezolvă problema iconiței de locație */
+}
+
 
         .nav-item:hover { color: #555; transform: scale(1.1); }
 
