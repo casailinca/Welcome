@@ -37,6 +37,7 @@
             text-align: center; 
             padding: 60px 0 40px 0; 
         }
+
         h1 { 
             font-family: 'Playfair Display', serif; 
             font-size: clamp(2.5rem, 8vw, 4rem); 
@@ -45,6 +46,7 @@
             line-height: 1.1;
             margin-bottom: 15px;
         }
+
         .subtitle { 
             text-transform: uppercase; 
             letter-spacing: 3px; 
@@ -79,7 +81,7 @@
 
         .dest-media {
             width: 100%;
-            height: 350px;
+            height: 300px;
             overflow: hidden;
         }
 
@@ -88,10 +90,6 @@
             height: 100%;
             object-fit: cover;
             transition: 1.2s ease;
-        }
-
-        .dest-card:hover .dest-media img {
-            transform: scale(1.1);
         }
 
         .dest-content {
@@ -107,12 +105,13 @@
             color: var(--accent);
             text-transform: uppercase;
             font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .dest-content h2 {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            margin: 10px 0;
+            margin-bottom: 10px;
             font-weight: 600;
         }
 
@@ -130,20 +129,16 @@
             font-weight: 600;
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
+        /* Meniu Navigație */
         .menu-toggle { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; cursor: pointer; }
         nav { position: fixed; bottom: 105px; right: 30px; background: var(--glass); backdrop-filter: blur(15px); border-radius: 30px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.4s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
         .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; }
-
-        @media (max-width: 600px) {
-            .dest-media { height: 250px; }
-        }
     </style>
 </head>
 <body>
@@ -156,58 +151,50 @@
 
         <div class="destinations-grid">
             
-            <a href="https://maps.google.com/?cid=16027044558625596102&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" class="dest-card">
+            <a href="https://maps.app.goo.gl/ycquZwaaHC46CGVD9?g_st=ipc" class="dest-card">
                 <div class="dest-media">
                     <img src="ceah.jpg" alt="Masivul Ceahlau">
                 </div>
                 <div class="dest-content">
-                    <span>Munte • 15 min distanță</span>
-
-http://googleusercontent.com/map_location_reference/1
-                    <h2>[Ceahlău Massif](http://googleusercontent.com/map_location_reference/0)</h2>
-                    <p>Olimpul Moldovei te așteaptă cu trasee legendare spre Vârful Toaca și Cascada Duruitoarea.</p>
+                    <span>Munte • 36 min (27 km)</span>
+                    <h2>Masivul Ceahlău</h2>
+                    <p>Ești deja la porțile muntelui. Traseele legendare încep chiar de aici.</p>
                     <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
             </a>
 
-            <a href="https://maps.google.com/?cid=16347873613894003887&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" class="dest-card">
+            <a href="https://maps.app.goo.gl/uUf5MYPSjJsBUpSJ6?g_st=ipc" class="dest-card">
                 <div class="dest-media">
                     <img src="izvmun.jpg" alt="Lacul Bicaz">
                 </div>
                 <div class="dest-content">
-                    <span>Relaxare • 20 min distanță</span>
-
-http://googleusercontent.com/map_location_reference/3
-                    <h2>[Lake Izvorul Muntelui](http://googleusercontent.com/map_location_reference/2)</h2>
-                    <p>Cel mai mare lac artificial din România, perfect pentru plimbări cu barca sub privirea muntelui.</p>
+                    <span>Relaxare • (Lac)59 min/24 km---(Baraj)3 min/3,2 km</span>
+                    <h2>Lacul Izvorul Muntelui</h2>
+                    <p>Coboară spre Portul Bicaz pentru o croazieră sub munte pe cel mai mare lac din țară.</p>
                     <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
             </a>
 
-            <a href="https://maps.google.com/?cid=11719233279037018192&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" class="dest-card">
+            <a href="https://maps.app.goo.gl/Mscz6T4bJgFsD3TU6?g_st=ipc" class="dest-card">
                 <div class="dest-media">
                     <img src="cheibicaz.jpg" alt="Cheile Bicazului">
                 </div>
                 <div class="dest-content">
-                    <span>Peisaj • 40 min distanță</span>
-
-http://googleusercontent.com/map_location_reference/5
-                    <h2>[Bicaz Gorges](http://googleusercontent.com/map_location_reference/4)</h2>
+                    <span>Peisaj • 35 min (32 km)</span>
+                    <h2>Cheile Bicazului</h2>
                     <p>Un spectacol al naturii sculptat în piatră, drumul care leagă Moldova de Transilvania.</p>
                     <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
             </a>
 
-            <a href="https://maps.google.com/?cid=6316997095681165562&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" class="dest-card">
+            <a href="https://maps.app.goo.gl/XTfh7RpkT34o58Ps8?g_st=ipc" class="dest-card">
                 <div class="dest-media">
-                    <img src="lacurosu.jpg" alt="Lacu Roșu">
+                    <img src="lacurosu.jpg" alt="Lacu Rosu">
                 </div>
                 <div class="dest-content">
-                    <span>Natură • 50 min distanță</span>
-
-http://googleusercontent.com/map_location_reference/7
-                    <h2>[Red Lake](http://googleusercontent.com/map_location_reference/6)</h2>
-                    <p>O enigmă a naturii formată prin prăbușirea unui versant, unde trunchiurile brazilor de odinioară străpung oglinda apei.</p>
+                    <span>Natură • 50 min (40 km)</span>
+                    <h2>Lacu Roșu</h2>
+                    <p>O enigmă a naturii unde trunchiurile brazilor străpung oglinda apei.</p>
                     <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
             </a>
