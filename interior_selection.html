@@ -11,8 +11,8 @@
             --primary: #1d1d1f;
             --accent: #d4af37;
             --bg: #f5f5f7;
-            --glass: rgba(255, 255, 255, 0.8);
-            --border: rgba(0, 0, 0, 0.05);
+            --glass: rgba(255, 255, 255, 0.9);
+            --border: rgba(0, 0, 0, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,7 +43,6 @@
 
         h1 { font-weight: 600; font-size: 2.2rem; margin: 10px 0 30px 0; color: var(--primary); }
 
-        /* Stilul Split-Card */
         .split-card {
             display: flex;
             background: white;
@@ -57,21 +56,11 @@
             border: 1px solid var(--border);
         }
 
-        /* Alternanța: al doilea card este inversat */
         .split-card.reverse { flex-direction: row-reverse; }
-
         .split-card:active { transform: scale(0.97); }
 
-        .card-media {
-            width: 40%;
-            overflow: hidden;
-        }
-
-        .card-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .card-media { width: 40%; overflow: hidden; }
+        .card-media img { width: 100%; height: 100%; object-fit: cover; }
 
         .card-content {
             width: 60%;
@@ -91,31 +80,70 @@
             margin-bottom: 5px;
         }
 
-        .card-content h2 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 5px;
+        .card-content h2 { font-size: 1.3rem; color: var(--primary); margin-bottom: 5px; }
+        .card-content p { font-size: 0.8rem; color: #666; line-height: 1.3; }
+        .card-arrow { position: absolute; bottom: 15px; right: 15px; color: var(--accent); font-size: 0.8rem; }
+
+        /* --- MENIU NAVIGATIE UNIFORMIZAT (FIX) --- */
+        .menu-toggle { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            width: 60px; 
+            height: 60px; 
+            background: white; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.2rem; 
+            border: 1px solid var(--border); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            z-index: 3000; 
+            cursor: pointer; 
         }
 
-        .card-content p {
-            font-size: 0.8rem;
-            color: #86868b;
-            line-height: 1.3;
+        nav { 
+            position: fixed; 
+            bottom: 105px; 
+            right: 30px; 
+            background: var(--glass); 
+            backdrop-filter: blur(15px); 
+            border-radius: 35px; 
+            border: 1px solid var(--border); 
+            display: flex; 
+            flex-direction: column; 
+            padding: 15px 0; 
+            gap: 15px; 
+            z-index: 2000; 
+            width: 60px; /* Latime fixa */
+            align-items: center; 
+            transform: translateY(20px); 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
 
-        .card-arrow {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            color: var(--accent);
-            font-size: 0.8rem;
+        nav.active { 
+            transform: translateY(0); 
+            opacity: 1; 
+            visibility: visible; 
         }
 
-        /* Meniu Hamburger */
-        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 3000; }
-        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
-        nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
-        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.3rem; display: flex; justify-content: center; }
+        .nav-item { 
+            text-decoration: none; 
+            color: var(--primary); 
+            font-size: 1.4rem; 
+            width: 40px; 
+            height: 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: 0.3s;
+        }
+
+        .nav-item i { width: 24px; text-align: center; }
+        .nav-item:hover { color: var(--accent); }
     </style>
 </head>
 <body>
@@ -125,9 +153,7 @@
         <h1>Interior</h1>
 
         <a href="camere_selection.html" class="split-card">
-            <div class="card-media">
-                <img src="cam1_1.jpg">
-            </div>
+            <div class="card-media"><img src="cam1_1.jpg"></div>
             <div class="card-content">
                 <span class="category">Dormitoare</span>
                 <h2>Camere</h2>
@@ -137,9 +163,7 @@
         </a>
 
         <a href="living.html" class="split-card reverse">
-            <div class="card-media">
-                <img src="liv1.jpg">
-            </div>
+            <div class="card-media"><img src="liv1.jpg"></div>
             <div class="card-content">
                 <span class="category">Zonă de zi</span>
                 <h2>Living</h2>
@@ -149,9 +173,7 @@
         </a>
 
         <a href="bai.html" class="split-card">
-            <div class="card-media">
-                <img src="bM1.jpg">
-            </div>
+            <div class="card-media"><img src="bM1.jpg"></div>
             <div class="card-content">
                 <span class="category">Relaxare</span>
                 <h2>Băi</h2>
@@ -161,7 +183,8 @@
         </a>
     </div>
 
-    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -174,10 +197,13 @@
     <script>
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
-            const icon = document.getElementById('menu-icon');
+            const icon = document.querySelector('.menu-toggle i');
             nav.classList.toggle('active');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            if (nav.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
         }
     </script>
 </body>
