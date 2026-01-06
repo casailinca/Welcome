@@ -134,11 +134,70 @@
             gap: 8px;
         }
 
-        /* Meniu Navigație */
-        .menu-toggle { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; cursor: pointer; }
-        nav { position: fixed; bottom: 105px; right: 30px; background: var(--glass); backdrop-filter: blur(15px); border-radius: 30px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.4s; }
-        nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
-        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; }
+        /* --- MENIU NAVIGATIE REPARAT --- */
+        .menu-toggle { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            width: 60px; 
+            height: 60px; 
+            background: white; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.2rem; 
+            border: 1px solid var(--border); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            z-index: 3000; 
+            cursor: pointer; 
+        }
+
+        nav { 
+            position: fixed; 
+            bottom: 105px; 
+            right: 30px; 
+            background: var(--glass); 
+            backdrop-filter: blur(15px); 
+            border-radius: 35px; 
+            border: 1px solid var(--border); 
+            display: flex; 
+            flex-direction: column; 
+            padding: 15px 0; 
+            gap: 15px; 
+            z-index: 2000; 
+            width: 60px; /* Latime fixa egala cu butonul */
+            align-items: center; /* Centreaza iconitele */
+            transform: translateY(20px); 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+
+        nav.active { 
+            transform: translateY(0); 
+            opacity: 1; 
+            visibility: visible; 
+        }
+
+        .nav-item { 
+            text-decoration: none; 
+            color: var(--primary); 
+            font-size: 1.4rem; 
+            width: 40px; 
+            height: 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: 0.3s;
+        }
+
+        .nav-item i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .nav-item:hover { color: var(--accent); }
     </style>
 </head>
 <body>
@@ -151,7 +210,7 @@
 
         <div class="destinations-grid">
             
-            <a href="https://maps.app.goo.gl/ycquZwaaHC46CGVD9?g_st=ipc" class="dest-card">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Masivul+Ceahlau" class="dest-card">
                 <div class="dest-media">
                     <img src="ceah.jpg" alt="Masivul Ceahlau">
                 </div>
@@ -163,19 +222,19 @@
                 </div>
             </a>
 
-            <a href="https://maps.app.goo.gl/uUf5MYPSjJsBUpSJ6?g_st=ipc" class="dest-card">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Baraj+Bicaz" class="dest-card">
                 <div class="dest-media">
                     <img src="izvmun.jpg" alt="Lacul Bicaz">
                 </div>
                 <div class="dest-content">
-                    <span>Relaxare • (Lac)59 min/24 km---(Baraj)3 min/3,2 km</span>
+                    <span>Relaxare • Baraj: 3 min | Port: 15 min</span>
                     <h2>Lacul Izvorul Muntelui</h2>
                     <p>Coboară spre Portul Bicaz pentru o croazieră sub munte pe cel mai mare lac din țară.</p>
                     <div class="nav-link-hint"><i class="fas fa-location-arrow"></i> Vezi traseul</div>
                 </div>
             </a>
 
-            <a href="https://maps.app.goo.gl/Mscz6T4bJgFsD3TU6?g_st=ipc" class="dest-card">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Cheile+Bicazului" class="dest-card">
                 <div class="dest-media">
                     <img src="cheibicaz.jpg" alt="Cheile Bicazului">
                 </div>
@@ -187,7 +246,7 @@
                 </div>
             </a>
 
-            <a href="https://maps.app.goo.gl/XTfh7RpkT34o58Ps8?g_st=ipc" class="dest-card">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Lacu+Rosu" class="dest-card">
                 <div class="dest-media">
                     <img src="lacurosu.jpg" alt="Lacu Rosu">
                 </div>
@@ -202,7 +261,7 @@
         </div>
     </div>
 
-    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -214,22 +273,15 @@
 
     <script>
         function toggleMenu() {
-    const nav = document.getElementById('main-nav');
-    const icon = document.querySelector('.menu-toggle i');
-    
-    // Toggle clasa pentru meniu
-    nav.classList.toggle('active');
-    
-    // Schimbare iconiță: dacă are bars, pune times (X), altfel pune bars
-    if (nav.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-    } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-    }
-}
-
+            const nav = document.getElementById('main-nav');
+            const icon = document.querySelector('.menu-toggle i');
+            nav.classList.toggle('active');
+            if (nav.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        }
     </script>
 </body>
 </html>
