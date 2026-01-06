@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locație | Casa Ilinca</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary: #1d1d1f;
             --accent: #d4af37;
-            --bg: #fcfaf7; /* Crem foarte deschis (stil scandinav) */
-            --glass: rgba(255, 255, 255, 0.9);
-            --border: rgba(0, 0, 0, 0.08);
+            --bg: #f5f5f7;
+            --glass: rgba(255, 255, 255, 0.8);
+            --border: rgba(0, 0, 0, 0.05);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,172 +21,123 @@
             font-family: 'Montserrat', sans-serif; 
             background-color: var(--bg); 
             padding: 20px;
-            color: var(--primary);
-            overflow-x: hidden;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        /* Animație de intrare fluidă */
-        .fade-in {
-            animation: reveal 1s ease-out forwards;
-        }
-
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .container { width: 100%; max-width: 900px; margin: 0 auto; }
+        .container { width: 100%; max-width: 500px; margin: 0 auto; }
 
-        /* Stil Titlu Editorial */
-        h1 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 3.5rem; 
-            font-weight: 600; 
-            font-style: italic;
-            margin: 40px 0 10px 0; 
-            line-height: 1;
-        }
-        .subtitle { 
-            color: #86868b; 
-            margin-bottom: 40px; 
-            font-size: 0.9rem; 
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        h1 { font-weight: 600; font-size: 2.2rem; margin: 20px 0 10px 0; color: var(--primary); }
+        .subtitle { color: #86868b; margin-bottom: 30px; font-size: 0.9rem; }
 
-        /* Harta - Acum mai mare pe PC, integrată fin */
+        /* Harta Integrată Corectă (Izvoru Muntelui) */
         .map-container {
             width: 100%;
-            height: 400px;
-            border-radius: 2px; /* Margini drepte pentru stil editorial */
+            height: 250px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             margin-bottom: 35px;
             border: 1px solid var(--border);
-            filter: grayscale(10%) contrast(90%);
         }
 
-        /* Buton Navigație Stil Minimalist */
-        .nav-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: var(--primary);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 400;
-            margin-bottom: 60px;
-            transition: 0.3s;
-            letter-spacing: 1px;
-        }
-        .nav-button:hover { background: var(--accent); transform: translateY(-3px); }
-
-        h3.section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-        }
-
-        /* Bento/Split Cards stilizate */
-        .split-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding-bottom: 100px;
-        }
-
+        /* Split Cards */
         .split-card {
-            background: white;
-            border-radius: 0; /* Aspect de revistă */
-            overflow: hidden;
             display: flex;
-            flex-direction: column;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            text-decoration: none;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            height: 140px;
             border: 1px solid var(--border);
-            transition: 0.4s;
         }
 
-        .split-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .split-card.reverse { flex-direction: row-reverse; }
 
-        .card-media { width: 100%; height: 200px; overflow: hidden; }
-        .card-media img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .split-card:hover .card-media img { transform: scale(1.1); }
+        .card-media { width: 35%; overflow: hidden; }
+        .card-media img { width: 100%; height: 100%; object-fit: cover; }
 
         .card-content {
-            padding: 25px;
+            width: 65%;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .category {
-            font-size: 10px;
+            font-size: 8px;
             font-weight: 700;
             color: var(--accent);
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            display: block;
+            margin-bottom: 4px;
         }
 
-        .card-content h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
-        .card-content p { font-size: 0.9rem; color: #666; line-height: 1.6; font-weight: 300; }
+        .card-content h2 { font-size: 1.1rem; color: var(--primary); margin-bottom: 4px; }
+        .card-content p { font-size: 0.75rem; color: #86868b; line-height: 1.3; }
 
-        /* Meniu Floating modernizat */
-        .menu-toggle { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; cursor: pointer; }
-        nav { position: fixed; bottom: 105px; right: 30px; background: var(--glass); backdrop-filter: blur(15px); border-radius: 30px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        /* Buton Navigare Rapidă */
+        .nav-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Meniu Hamburger */
+        .menu-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--border); box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 3000; }
+        nav { position: fixed; bottom: 95px; right: 25px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--border); display: flex; flex-direction: column; padding: 15px; gap: 20px; z-index: 2000; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 0.3s; }
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
-        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; transition: 0.3s; }
-        .nav-item:hover { color: var(--accent); }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            .map-container { height: 300px; }
-        }
+        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.3rem; display: flex; justify-content: center; }
     </style>
 </head>
 <body>
 
-    <div class="container fade-in">
+    <div class="container">
         <h1>Locație</h1>
-        <p class="subtitle">Izvoru Muntelui, Neamț — La poalele Ceahlăului</p>
+        <p class="subtitle">Izvoru Muntelui, Neamț - La poalele Ceahlăului</p>
 
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2711.123456789!2d25.968!3d46.968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDU4JzA0LjgiTiAyNcKwNTgnMDQuOCJF!5e0!3m2!1sro!2sro!4v1234567890" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2711.636!2d26.0628!3d46.9433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4735a10000000001%3A0x6b72d04e0ac5ee9d!2sCasa%20Ilinca!5e0!3m2!1sro!2sro!4v1700000000000" 
                 width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
 
-        <a href="https://maps.google.com" class="nav-button">
-            <i class="fas fa-paper-plane"></i> GHIDEAZĂ-MĂ SPRE CASĂ
+        <a href="https://maps.google.com/?q=46.943396,26.064986" class="nav-button">
+            <i class="fas fa-location-arrow"></i> Pornește Navigația
         </a>
 
-        <h3 class="section-title">Atracții în zonă</h3>
+        <h3 style="margin-bottom: 20px; font-weight: 400;">Atracții în zonă</h3>
 
-        <div class="split-grid">
-            <div class="split-card">
-                <div class="card-media">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600" alt="Ceahlau">
-                </div>
-                <div class="card-content">
-                    <span class="category">Adventure</span>
-                    <h2>Masivul Ceahlău</h2>
-                    <p>Poarta de intrare către potecile muntelui sfânt al dacilor. Trasee ce duc spre Cabana Dochia și Vârful Toaca.</p>
-                </div>
+        <div class="split-card">
+            <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400" alt="Ceahlau">
             </div>
-
-            <div class="split-card">
-                <div class="card-media">
-                    <img src="https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=600" alt="Lacul Bicaz">
-                </div>
-                <div class="card-content">
-                    <span class="category">Relaxare</span>
-                    <h2>Lacul Bicaz</h2>
-                    <p>La doar câteva minute distanță, bucură-te de plimbări cu barca pe "marea de la munte".</p>
-                </div>
+            <div class="card-content">
+                <span class="category">Adventure</span>
+                <h2>Masivul Ceahlău</h2>
+                <p>Punctul de plecare spre Cabana Dochia și Vârful Toaca.</p>
             </div>
         </div>
+
+        
     </div>
 
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
