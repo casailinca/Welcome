@@ -2,88 +2,173 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poveste | Ilinca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Poveste | Casa Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --glass: rgba(255, 255, 255, 0.7); --border: rgba(255, 255, 255, 0.4); --dark: #1d1d1f; }
+        :root {
+            --primary: #1d1d1f;
+            --accent: #8e8e93;
+            --bg: #f5f5f7;
+            --glass: rgba(255, 255, 255, 0.7);
+            --border: rgba(0, 0, 0, 0.05);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
         
-        /* --- MENIU UNIFORMIZAT PENTRU TOATE PAGINILE --- */
-.menu-toggle { 
-    position: fixed; 
-    bottom: 30px; 
-    right: 30px; 
-    width: 60px; 
-    height: 60px; 
-    background: white; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.2rem; 
-    border: 1px solid rgba(0, 0, 0, 0.08); 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-    z-index: 3000; 
-    cursor: pointer; 
-}
+        html, body { 
+            width: 100%; 
+            background-color: var(--bg);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
 
-nav { 
-    position: fixed; 
-    bottom: 105px; 
-    right: 30px; 
-    background: rgba(255, 255, 255, 0.9); 
-    backdrop-filter: blur(15px); 
-    border-radius: 35px; 
-    border: 1px solid rgba(0, 0, 0, 0.08); 
-    display: flex; 
-    flex-direction: column; 
-    padding: 15px 0; 
-    gap: 15px; 
-    z-index: 2000; 
-    
-    /* ACESTEA SUNT CHEIA: */
-    width: 60px;           /* Aceeași lățime peste tot */
-    align-items: center;    /* Centrează perfect iconițele pe mijloc */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6;
+        }
 
-    transform: translateY(20px); 
-    opacity: 0; 
-    visibility: hidden; 
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-}
+        /* Fundal decorativ (opțional - un cerc soft de culoare) */
+        .bg-glow {
+            position: fixed;
+            top: -150px;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(200,200,200,0.2) 0%, rgba(245,245,247,0) 70%);
+            z-index: -1;
+        }
 
-nav.active { 
-    transform: translateY(0); 
-    opacity: 1; 
-    visibility: visible; 
-}
+        .container { 
+            width: 100%; 
+            max-width: 550px; 
+            margin: 0 auto; 
+            padding: 40px 25px 120px 25px;
+            animation: fadeIn 0.8s ease-out;
+        }
 
-.nav-item { 
-    text-decoration: none; 
-    color: #1d1d1f; 
-    font-size: 1.4rem; 
-    width: 40px; 
-    height: 40px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-}
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-.nav-item i {
-    width: 24px;       /* Forțează iconița într-un spațiu egal */
-    text-align: center; /* Rezolvă problema iconiței de locație */
-}
+        /* Header Style */
+        .header-section {
+            margin-bottom: 40px;
+        }
 
-        
-        .glass-card { background: rgba(255,255,255,0.4); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 35px; padding: 30px; max-width: 500px; animation: fadeIn 0.8s ease; }
-        h1 { font-weight: 300; margin-bottom: 15px; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .back-btn { 
+            text-decoration: none; 
+            color: var(--accent); 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 5px; 
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        h1 { 
+            font-weight: 600; 
+            font-size: 2.5rem; 
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Card Text Section */
+        .story-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid white;
+            padding: 30px;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+
+        .story-text {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #3a3a3c;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .highlight {
+            display: block;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Imagine decorativă mică în text */
+        .decoration-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 30px;
+            margin-bottom: 25px;
+        }
+
+        /* --- MENIU --- */
+        .menu-toggle { 
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; 
+            background: white; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 1.2rem; border: 1px solid rgba(0,0,0,0.05); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; 
+        }
+
+        nav { 
+            position: fixed; bottom: 105px; right: 30px; background: rgba(255,255,255,0.85); 
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 35px; 
+            border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; 
+            padding: 15px 0; gap: 15px; z-index: 2000; width: 60px; align-items: center; 
+            visibility: hidden; opacity: 0; transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+
+        nav.active { visibility: visible; opacity: 1; transform: translateY(0); }
+        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+
     </style>
 </head>
 <body>
-    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars" id="menu-icon"></i></div>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <div class="header-section">
+            <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i> Acasă</a>
+            <h1>Noi</h1>
+            <p class="subtitle">Povestea de la poalele Ceahlăului</p>
+        </div>
+
+        <img src="exterior_1.jpg" alt="Casa Ilinca Exterior" class="decoration-img">
+
+        <div class="story-card">
+            <div class="story-text">
+                Situată în inima Munților Ceahlău, în pitoreasca localitate Izvorul Muntelui, pensiunea noastră este punctul ideal de plecare pentru explorarea uneia dintre cele mai frumoase zone montane din România. 
+                <br><br>
+                Aproape de Lacul Bicaz și de traseele spectaculoase ale Ceahlăului, oferim oaspeților noștri cazare confortabilă, liniște și priveliști deosebite. 
+                <br><br>
+                Fie că îți dorești drumeții, plimbări în natură sau pur și simplu relaxare departe de agitație, aici vei găsi cadrul perfect pentru o vacanță reușită, în orice anotimp.
+                
+                <span class="highlight">Vă așteptăm cu drag să ne treceți pragul!</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
         <a href="description.html" class="nav-item"><i class="fas fa-info-circle"></i></a>
@@ -92,17 +177,13 @@ nav.active {
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
-    <div class="glass-card">
-        <h1>"Noi"</h1>
-        <p>Situată în inima Munților Ceahlău, în pitoreasca localitate Izvorul Muntelui, pensiunea noastră este punctul ideal de plecare pentru explorarea uneia dintre cele mai frumoase zone montane din România. Aproape de Lacul Bicaz și de traseele spectaculoase ale Ceahlăului, oferim oaspeților noștri cazare confortabilă, liniște și priveliști deosebite. Fie că îți dorești drumeții, plimbări în natură sau pur și simplu relaxare departe de agitație, aici vei găsi cadrul perfect pentru o vacanță reușită, în orice anotimp.</p>
-    </div>
+
     <script>
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
-            const icon = document.getElementById('menu-icon');
+            const icon = document.querySelector('.menu-toggle i');
             nav.classList.toggle('active');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            icon.className = nav.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
         }
     </script>
 </body>
