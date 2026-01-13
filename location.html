@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-363415031"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-363415031');
+    </script>
+
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.open(url, '_blank');
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-363415031/j6p6CP_Y_6AZEPe_z60B',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Locație | Casa Ilinca</title>
@@ -70,6 +94,7 @@
             font-size: 1rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
 
         .nav-button:active { transform: scale(0.96); }
@@ -105,12 +130,12 @@
 
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.841386616428!2d26.06284381561386!3d46.94336657914619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4735a100009909f3%3A0xab72d04ecaeccd9d!2sCasa%20Ilinca!5e0!3m2!1sro!2sro!4v1700000000000!5m2!1sro!2sro" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2711.6664205517725!2d25.95543831562208!3d46.93822197914589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473557e4e8929e0b%3A0xc3f1406830560a8b!2sCasa%20Ilinca!5e0!3m2!1sro!2sro!4v1625562000000!5m2!1sro!2sro" 
                 width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
 
-        <a href="https://maps.app.goo.gl/VVFQTgCBJ6uchqiv7?g_st=ic" target="_blank" class="nav-button">
+        <a onclick="return gtag_report_conversion('https://www.google.com/maps/dir/?api=1&destination=Casa+Ilinca+Izvoru+Muntelui')" class="nav-button">
             <i class="fas fa-location-arrow"></i> Pornește Navigația
         </a>
     </div>
