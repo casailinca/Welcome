@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-363415031"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-363415031');
+    </script>
+
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-363415031/j6p6CP_Y_6AZEPe_z60B',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Contact | Casa Ilinca</title>
@@ -29,7 +53,6 @@
             padding: 20px;
         }
 
-        /* Animatie stabila doar opacity */
         .container { 
             width: 100%; 
             max-width: 500px; 
@@ -46,7 +69,6 @@
         h1 { font-weight: 600; font-size: 2.5rem; margin: 20px 0 5px 0; color: var(--primary); letter-spacing: -1px; }
         .subtitle { color: var(--accent); margin-bottom: 35px; font-size: 1rem; font-weight: 300; }
 
-        /* Stilul Split-Card Uniformizat */
         .split-card {
             display: flex;
             background: white;
@@ -58,6 +80,7 @@
             height: 140px;
             border: 1px solid var(--border);
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
 
         .split-card.reverse { flex-direction: row-reverse; }
@@ -95,7 +118,6 @@
         .card-content h2 { font-size: 1.2rem; color: var(--primary); margin-bottom: 5px; font-weight: 600; }
         .card-content p { font-size: 0.85rem; color: #86868b; line-height: 1.3; font-weight: 400; }
 
-        /* --- MENIU UNIFORMIZAT --- */
         .menu-toggle { 
             position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; 
             background: white; border-radius: 50%; display: flex; align-items: center; 
@@ -116,7 +138,6 @@
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
         .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
         .nav-item i { width: 24px; text-align: center; }
-
     </style>
 </head>
 <body>
@@ -125,7 +146,7 @@
         <h1>Contact</h1>
         <p class="subtitle">Suntem la un click distanță pentru orice întrebare.</p>
 
-        <a href="tel:0735722314" class="split-card">
+        <a onclick="return gtag_report_conversion('tel:0735722314')" class="split-card">
             <div class="card-media">
                 <img src="call.JPG" alt="Rezervări">
             </div>
@@ -136,7 +157,7 @@
             </div>
         </a>
 
-        <a href="https://wa.me/40735722314" class="split-card reverse">
+        <a onclick="return gtag_report_conversion('https://wa.me/40735722314')" class="split-card reverse">
             <div class="card-media" style="background: #25D366;">
                 <i class="fab fa-whatsapp"></i>
             </div>
@@ -149,7 +170,7 @@
 
         <a href="location.html" class="split-card">
             <div class="card-media">
-                <img src="pin.JPG" alt="Locație" onerror="this.src='https://maps.googleapis.com/maps/api/staticmap?center=46.9433,26.0650&zoom=15&size=300x300&key=YOUR_API_KEY'">
+                <img src="pin.JPG" alt="Locație">
             </div>
             <div class="card-content">
                 <span class="category">Navigație</span>
