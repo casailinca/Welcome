@@ -19,9 +19,10 @@
         html, body { width: 100%; overflow-x: hidden; background-color: var(--bg); }
         body { font-family: 'Montserrat', sans-serif; padding: 20px; }
 
+        /* CONTAINER RESPONSIV */
         .container { 
             width: 100%; 
-            max-width: 500px; 
+            max-width: 1200px; /* Extins pentru laptop */
             margin: 0 auto; 
             animation: fadeInSimple 0.6s ease-out forwards;
             padding-bottom: 100px;
@@ -35,61 +36,85 @@
         .back-btn { 
             text-decoration: none; color: var(--primary); display: flex; 
             align-items: center; gap: 8px; margin-bottom: 15px; font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .back-btn:hover { opacity: 0.6; }
+
+        h1 { font-weight: 600; font-size: 2.5rem; margin-bottom: 5px; color: var(--primary); }
+        .room-specs { color: #86868b; font-size: 0.9rem; margin-bottom: 30px; display: flex; gap: 15px; }
+
+        /* LAYOUT FLEXIBIL: COLOANE PE DESKTOP */
+        .room-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        h1 { font-weight: 600; font-size: 2rem; margin-bottom: 5px; color: var(--primary); }
-        .room-specs { color: #86868b; font-size: 0.85rem; margin-bottom: 25px; display: flex; gap: 15px; }
-
         .main-header-img {
-            width: 100%; aspect-ratio: 4 / 5; border-radius: 35px; overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1); margin-bottom: 25px; border: 1px solid var(--border);
+            width: 100%; 
+            aspect-ratio: 4 / 5; 
+            border-radius: 35px; 
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+            border: 1px solid var(--border);
         }
         .main-header-img img { width: 100%; height: 100%; object-fit: cover; }
 
+        .video-section { width: 100%; }
+        
         .video-wrapper {
-            width: 100%; aspect-ratio: 9 / 16; border-radius: 35px; overflow: hidden; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid var(--border); background: #000;
+            width: 100%; 
+            aspect-ratio: 9 / 16; 
+            border-radius: 35px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+            border: 1px solid var(--border); 
+            background: #000;
         }
         video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+        /* MENIU */
         .menu-toggle { 
             position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; 
             background: white; border-radius: 50%; display: flex; align-items: center; 
             justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 3000; cursor: pointer;
         }
 
         nav { 
-    position: fixed; 
-    bottom: 105px; 
-    right: 30px; 
-    background: var(--glass); 
-    backdrop-filter: blur(15px); 
-    border-radius: 35px; 
-    border: 1px solid var(--border); 
-    display: flex; 
-    flex-direction: column; 
-    padding: 15px 0; 
-    gap: 15px; 
-    z-index: 2000; 
-    width: 60px;
-    align-items: center; 
-    visibility: hidden; 
-    opacity: 0; 
-    /* Adăugăm transformarea inițială (mai jos cu 20px) */
-    transform: translateY(20px); 
-    /* Adăugăm tranziția pentru transform și opacity */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-}
+            position: fixed; bottom: 105px; right: 30px; background: var(--glass); 
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 35px; border: 1px solid var(--border); display: flex; 
+            flex-direction: column; padding: 15px 0; gap: 15px; z-index: 2000; 
+            width: 60px; align-items: center; visibility: hidden; opacity: 0; 
+            transform: translateY(20px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
 
-nav.active { 
-    visibility: visible; 
-    opacity: 1; 
-    /* Revine la poziția originală când este activ */
-    transform: translateY(0); 
-}
+        nav.active { visibility: visible; opacity: 1; transform: translateY(0); }
+        .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
 
-          .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+        /* --- MEDIA QUERY LAPTOP --- */
+        @media (min-width: 850px) {
+            body { padding: 40px; }
+            
+            .room-content {
+                flex-direction: row; /* Imaginea și Video-ul stau unul lângă altul */
+                align-items: flex-start;
+            }
+
+            .main-header-img {
+                flex: 1.2; /* Imaginea ocupă mai mult spațiu */
+                max-height: 80vh;
+            }
+
+            .video-section {
+                flex: 0.8; /* Video-ul ocupă mai puțin (format portret) */
+            }
+
+            .video-wrapper {
+                max-height: 80vh;
+            }
+        }
     </style>
 </head>
 <body>
@@ -97,10 +122,23 @@ nav.active {
         <a href="camere_selection.html" class="back-btn"><i class="fas fa-arrow-left"></i> Camere</a>
         <h1>Camera 1</h1>
         <div class="room-specs"><span><i class="fas fa-bed"></i> Pat Matrimonial</span></div>
-        <div class="main-header-img"><img src="cam1_1.jpg" alt="Camera 1"></div>
-        <h3 style="font-weight: 400; margin: 25px 0 15px 0; font-size: 1rem;">Prezentare Video</h3>
-        <div class="video-wrapper"><video controls poster="cam1_2.JPG"><source src="vid1.mp4" type="video/mp4"></video></div>
+        
+        <div class="room-content">
+            <div class="main-header-img">
+                <img src="cam1_1.jpg" alt="Camera 1">
+            </div>
+
+            <div class="video-section">
+                <h3 style="font-weight: 400; margin-bottom: 15px; font-size: 1rem;">Prezentare Video</h3>
+                <div class="video-wrapper">
+                    <video controls poster="cam1_2.JPG">
+                        <source src="vid1.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
     <nav id="main-nav">
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
@@ -110,6 +148,7 @@ nav.active {
         <a href="location.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
         <a href="contact.html" class="nav-item"><i class="fas fa-paper-plane"></i></a>
     </nav>
+
     <script>
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
