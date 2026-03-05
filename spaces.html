@@ -9,7 +9,7 @@
     <style>
         :root {
             --primary: #1d1d1f;
-            --accent: #8e8e93; /* Unificat cu restul paginilor */
+            --accent: #8e8e93;
             --bg: #f5f5f7;
             --glass: rgba(255, 255, 255, 0.9);
             --border: rgba(0, 0, 0, 0.08);
@@ -29,10 +29,10 @@
             padding: 20px;
         }
 
-        /* Container cu animație simplă de opacitate (previne zoom-ul) */
+        /* CONTAINER RESPONSIV */
         .container { 
             width: 100%; 
-            max-width: 500px; 
+            max-width: 1200px; /* Se extinde pe desktop */
             margin: 0 auto; 
             animation: fadeInSimple 0.8s ease-out forwards;
             padding-bottom: 120px;
@@ -49,33 +49,50 @@
             margin: 20px 0 30px 0; 
             color: var(--primary); 
             letter-spacing: -1px;
+            text-align: left;
         }
 
-        /* --- SPLIT CARDURI MARI --- */
+        /* GRID PENTRU CARDURI */
+        .spaces-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default: o coloană (mobil) */
+            gap: 25px;
+        }
+
+        /* CARDURI */
         .split-card {
             display: flex;
             background: white;
-            border-radius: 35px; /* Rotunjire mai mare, stil Apple */
+            border-radius: 35px;
             overflow: hidden;
             text-decoration: none;
-            margin-bottom: 30px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
-            height: 220px; /* Am mărit înălțimea de la 160px la 220px */
+            transition: all 0.3s ease;
+            height: 220px;
             border: 1px solid var(--border);
         }
 
         .split-card.reverse { flex-direction: row-reverse; }
+        
+        .split-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
         .split-card:active { transform: scale(0.97); }
 
         .card-media { 
-            width: 45%; /* Am mărit puțin zona de imagine */
+            width: 45%; 
             overflow: hidden; 
         }
         .card-media img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
+            transition: transform 0.5s ease;
+        }
+        .split-card:hover .card-media img {
+            transform: scale(1.05);
         }
 
         .card-content {
@@ -97,7 +114,7 @@
         }
 
         .card-content h2 { 
-            font-size: 1.5rem; /* Titlu mai mare */
+            font-size: 1.5rem; 
             color: var(--primary); 
             margin-bottom: 8px; 
             font-weight: 600;
@@ -118,7 +135,7 @@
             opacity: 0.3;
         }
 
-        /* --- MENIU UNIFORMIZAT --- */
+        /* MENIU MOBIL */
         .menu-toggle { 
             position: fixed; 
             bottom: 30px; 
@@ -161,7 +178,28 @@
 
         nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
         .nav-item { text-decoration: none; color: var(--primary); font-size: 1.4rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        .nav-item i { width: 24px; text-align: center; }
+
+        /* --- MEDIA QUERY PENTRU LAPTOP/DESKTOP --- */
+        @media (min-width: 800px) {
+            body { padding: 40px; }
+            
+            h1 { font-size: 3.5rem; margin-bottom: 50px; }
+
+            .spaces-grid {
+                grid-template-columns: 1fr 1fr; /* Două coloane pe laptop */
+                gap: 40px;
+            }
+
+            .split-card {
+                height: 300px; /* Carduri mai mari pe desktop */
+            }
+
+            /* Opțional: dezactivăm reverse pe desktop pentru aliniere uniformă */
+            .split-card.reverse { flex-direction: row; }
+
+            /* Repoziționăm meniul sau îl lăsăm butonaș tip aplicație (modern) */
+            .container { padding-top: 20px; }
+        }
 
     </style>
 </head>
@@ -170,25 +208,27 @@
     <div class="container">
         <h1>Spații</h1>
 
-        <a href="exterior.html" class="split-card">
-            <div class="card-media"><img src="c_ext.jpg" alt="Exterior"></div>
-            <div class="card-content">
-                <span class="category">Outdoor</span>
-                <h2>Exterior</h2>
-                <p>Curtea, foișorul și zonele de relaxare.</p>
-                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
-            </div>
-        </a>
+        <div class="spaces-grid">
+            <a href="exterior.html" class="split-card">
+                <div class="card-media"><img src="c_ext.jpg" alt="Exterior"></div>
+                <div class="card-content">
+                    <span class="category">Outdoor</span>
+                    <h2>Exterior</h2>
+                    <p>Curtea, foișorul și zonele de relaxare.</p>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
 
-        <a href="interior_selection.html" class="split-card reverse">
-            <div class="card-media"><img src="c_int.jpg" alt="Interior"></div>
-            <div class="card-content">
-                <span class="category">Indoor</span>
-                <h2>Interior</h2>
-                <p>Dormitoare, living și design rafinat.</p>
-                <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
-            </div>
-        </a>
+            <a href="interior_selection.html" class="split-card reverse">
+                <div class="card-media"><img src="c_int.jpg" alt="Interior"></div>
+                <div class="card-content">
+                    <span class="category">Indoor</span>
+                    <h2>Interior</h2>
+                    <p>Dormitoare, living și design rafinat.</p>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+        </div>
     </div>
 
     <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
