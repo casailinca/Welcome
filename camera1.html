@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Dormitor I | Casa Ilinca</title>
+    <title>Camera 1 | Casa Ilinca</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -22,7 +22,7 @@
         /* CONTAINER RESPONSIV */
         .container { 
             width: 100%; 
-            max-width: 1200px; /* Extins pentru laptop */
+            max-width: 1200px; 
             margin: 0 auto; 
             animation: fadeInSimple 0.6s ease-out forwards;
             padding-bottom: 100px;
@@ -96,24 +96,10 @@
         /* --- MEDIA QUERY LAPTOP --- */
         @media (min-width: 850px) {
             body { padding: 40px; }
-            
-            .room-content {
-                flex-direction: row; /* Imaginea și Video-ul stau unul lângă altul */
-                align-items: flex-start;
-            }
-
-            .main-header-img {
-                flex: 1.2; /* Imaginea ocupă mai mult spațiu */
-                max-height: 80vh;
-            }
-
-            .video-section {
-                flex: 0.8; /* Video-ul ocupă mai puțin (format portret) */
-            }
-
-            .video-wrapper {
-                max-height: 80vh;
-            }
+            .room-content { flex-direction: row; align-items: flex-start; }
+            .main-header-img { flex: 1.2; max-height: 80vh; }
+            .video-section { flex: 0.8; }
+            .video-wrapper { max-height: 80vh; }
         }
     </style>
 </head>
@@ -129,8 +115,9 @@
             </div>
 
             <div class="video-section">
+                <h3 style="font-weight: 400; margin-bottom: 15px; font-size: 1rem;">Prezentare Video</h3>
                 <div class="video-wrapper">
-                    <video controls poster="cam1_2.JPG">
+                    <video id="roomVideo" autoplay muted loop playsinline controls poster="cam1_2.JPG">
                         <source src="vid1.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -149,6 +136,17 @@
     </nav>
 
     <script>
+        // Funcția pentru pornire automată video
+        window.addEventListener('load', function() {
+            const video = document.getElementById('roomVideo');
+            // Dacă e laptop/desktop (ecran > 850px), forțăm pornirea
+            if (window.innerWidth > 850) {
+                video.play().catch(error => {
+                    console.log("Autoplay a fost blocat sau necesită interacțiune: ", error);
+                });
+            }
+        });
+
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
             const icon = document.querySelector('.menu-toggle i');
