@@ -106,9 +106,8 @@
             </div>
 
             <div class="video-section">
-                <h3 style="font-weight: 400; margin-bottom: 15px; font-size: 1rem;">Prezentare Video</h3>
                 <div class="video-wrapper">
-                    <video controls poster="cam2_2.jpg">
+                    <video id="roomVideo" autoplay muted loop playsinline controls poster="cam2_2.jpg">
                         <source src="vid2.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -127,6 +126,14 @@
     </nav>
 
     <script>
+        // Pornire automată video doar pe Laptop
+        window.addEventListener('load', function() {
+            const video = document.getElementById('roomVideo');
+            if (window.innerWidth > 850) {
+                video.play().catch(error => console.log("Autoplay block:", error));
+            }
+        });
+
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
             const icon = document.querySelector('.menu-toggle i');
